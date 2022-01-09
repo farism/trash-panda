@@ -1,0 +1,45 @@
+{
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "omnisharp.useGlobalMono": "always",
+  "csharp.referencesCodeLens.enabled": false,
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
+  "files.associations": {
+    "*.uss": "css",
+    "*.uxml": "xml"
+  },
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.gitignore": true,
+    "**/.gitmodules": true,
+    "**/*.booproj": true,
+    "**/*.pidb": true,
+    "**/*.suo": true,
+    "**/*.user": true,
+    "**/*.userprefs": true,
+    "**/*.unityproj": true,
+    "**/*.dll": true,
+    "**/*.exe": true,
+    "**/*.ma": true,
+    "**/*.MA": true,
+    "**/*.asset": true,
+    "**/*.cubemap": true,
+    "**/*.flare": true,
+    "**/*.mat": true,
+    "**/*.meta": true,
+    "**/*.prefab": true,
+    "**/*.unity": true,
+    "build/": true,
+    "Build/": true,
+    "Library/": true,
+    "library/": true,
+    "obj/": true,
+    "Obj/": true,
+    "ProjectSettings/": true,
+    "temp/": true,
+    "Temp/": true
+  }
+}
