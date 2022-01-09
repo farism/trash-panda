@@ -21,11 +21,14 @@ public class Game : MonoBehaviour
     public bool toolBulldozer { get; private set; } = false;
     public int toolLeafblowerEnergy { get; private set; } = 0;
     public int toolBulldozerEnergy { get; private set; } = 0;
-    public bool sound { get; private set; }
+    public bool sound { get; private set; } = true;
     public SpriteRenderer raccoon;
     public GameObject globe;
     public SpriteRenderer shop;
     public UI ui;
+
+    Vector3 mousePos;
+    Vector3 rotation = Vector3.zero;
 
     public void SetView(View v)
     {
@@ -43,7 +46,8 @@ public class Game : MonoBehaviour
         }
         else if (view == View.Jobs)
         {
-            globe.transform.DOScale(5, 0.3f);
+            globe.transform.DOScale(3, 1f).SetEase(Ease.OutBack);
+            globe.transform.DORotate(new Vector3(0, -90, 0), 1f).SetEase(Ease.OutBack);
         }
     }
 
@@ -57,21 +61,26 @@ public class Game : MonoBehaviour
     {
         HideAll(0);
         SetView(View.Home);
-        globe.transform.Rotate(new Vector3(0, 0, 10));
     }
 
     void Update()
     {
+        UpdateStats();
+        mousePos = Input.mousePosition;
+    }
+
+    void UpdateStats()
+    {
         energy -= Time.deltaTime;
         hunger -= Time.deltaTime;
         affection -= Time.deltaTime;
-        globe.transform.Rotate(new Vector3(0, 0.1f, 0));
     }
 
     void HideAll(float duration = 0.3f)
     {
         raccoon.transform.DOScale(0, duration);
         globe.transform.DOScale(0, duration);
+        globe.transform.DORotate(new Vector3(0, 180, 0), duration);
         shop.DOFade(0, duration);
     }
 }

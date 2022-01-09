@@ -199,3 +199,25 @@
   right: 0;
   top: 0;
 }
+
+#Jobs {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.location {
+  width: 32px;
+  height: 32px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  border-radius: 32px;
+  transition-property: opacity, scale;
+  transition-duration: 0.1s;
+}
+
+.location:hover {
+  scale: 1.5;
+}

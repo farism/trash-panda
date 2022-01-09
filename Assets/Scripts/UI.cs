@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -17,6 +18,29 @@ public class UI : MonoBehaviour
     VisualElement home;
     VisualElement shop;
     VisualElement jobs;
+    VisualElement location1;
+    VisualElement location2;
+    VisualElement location3;
+    VisualElement location4;
+    VisualElement location5;
+    VisualElement[] locations;
+
+    public void ShowJobLocation(int index, Vector3 position)
+    {
+        var screenPos = Camera.main.WorldToScreenPoint(position);
+        locations[index].style.left = screenPos.x;
+        locations[index].style.top = Screen.height - screenPos.y;
+        locations[index].style.opacity = 1;
+    }
+
+    public void HideJobLocation(int index)
+    {
+        locations[index].style.opacity = 0;
+    }
+
+    void Awake()
+    {
+    }
 
     void Start()
     {
@@ -38,6 +62,13 @@ public class UI : MonoBehaviour
         shop = root.Q<VisualElement>("Shop");
         jobs = root.Q<VisualElement>("Jobs");
         HideContainers();
+
+        location1 = root.Q<VisualElement>("Location1");
+        location2 = root.Q<VisualElement>("Location2");
+        location3 = root.Q<VisualElement>("Location3");
+        location4 = root.Q<VisualElement>("Location4");
+        location5 = root.Q<VisualElement>("Location5");
+        locations = new VisualElement[] { location1, location2, location3, location4, location5 };
 
         // event handlers
         homeBtn.clicked += () => OnClickView(View.Home, home);

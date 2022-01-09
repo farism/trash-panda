@@ -1,14 +1,30 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/UI.uss?fileID=7433441132597879392&amp;guid=889240535a1001840af5edc9c0cc2540&amp;type=3#UI" />
-    <ui:VisualElement name="CurrencyContainer" style="right: 0;">
-        <ui:VisualElement name="CurrencyIcon" style="background-image: url(&apos;project://database/Assets/Images/UI/two-coins.png?fileID=2800000&amp;guid=32f3a9351e6d1e445b8ffef640233a86&amp;type=3#two-coins&apos;);" />
-        <ui:Label text="1,000,000" name="Currency" />
+    <ui:VisualElement name="Shop" class="container">
+        <ui:VisualElement name="TopBar">
+            <ui:Button name="Food" class="shop-view-button" style="background-image: url(&apos;project://database/Assets/Images/UI/hamburger.png?fileID=2800000&amp;guid=ef0a7a4ba2b0b1c47a9683529d86897b&amp;type=3#hamburger&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:Button name="Toys" class="shop-view-button" style="background-image: url(&apos;project://database/Assets/Images/UI/beach-ball.png?fileID=2800000&amp;guid=f41ef9fea10f534418cf4381ca64663d&amp;type=3#beach-ball&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:Button name="Furniture" class="shop-view-button" style="background-image: url(&apos;project://database/Assets/Images/UI/sofa.png?fileID=2800000&amp;guid=87c5f0d0d999f4e4b8458acbf2cbc667&amp;type=3#sofa&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:Button name="Tools" class="shop-view-button" style="background-image: url(&apos;project://database/Assets/Images/UI/rake.png?fileID=2800000&amp;guid=8309b26d714260f4cac9d98954966eee&amp;type=3#rake&apos;); -unity-background-scale-mode: scale-to-fit;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="FoodItems">
+            <ui:Button text="Fries">
+                <ui:VisualElement />
+            </ui:Button>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="Jobs">
+        <ui:VisualElement name="Location1" class="location" />
+        <ui:VisualElement name="Location2" class="location" />
+        <ui:VisualElement name="Location3" class="location" />
+        <ui:VisualElement name="Location4" class="location" />
+        <ui:VisualElement name="Location5" class="location" />
     </ui:VisualElement>
     <ui:VisualElement name="ControlsContainer">
-        <ui:Button name="Home" focusable="false" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/house.png?fileID=2800000&amp;guid=35addc19ad37218428eec9ac5b2fc373&amp;type=3#house&apos;);" />
+        <ui:Button name="HomeBtn" focusable="false" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/house.png?fileID=2800000&amp;guid=35addc19ad37218428eec9ac5b2fc373&amp;type=3#house&apos;);" />
         <ui:Button name="ShopBtn" focusable="false" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/price-tag.png?fileID=2800000&amp;guid=872a8d02feb06a7428f1b183fe5d5848&amp;type=3#price-tag&apos;);" />
-        <ui:Button name="JobsBtn" focusable="false" class="control-button" style=" background-image: url(&apos;project://database/Assets/Images/UI/earth-america.png?fileID=2800000&amp;guid=353c98c3af571a44e85a2bd96e6896fe&amp;type=3#earth-america&apos;);" />
-        <ui:Button name="Sound" focusable="false" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/speaker.png?fileID=2800000&amp;guid=776d1f12542240d4fbbb8dbc509cfd8c&amp;type=3#speaker&apos;);" />
+        <ui:Button name="JobsBtn" focusable="false" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/earth-america.png?fileID=2800000&amp;guid=353c98c3af571a44e85a2bd96e6896fe&amp;type=3#earth-america&apos;);" />
+        <ui:Button name="SoundBtn" focusable="false" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/speaker.png?fileID=2800000&amp;guid=776d1f12542240d4fbbb8dbc509cfd8c&amp;type=3#speaker&apos;);" />
     </ui:VisualElement>
     <ui:VisualElement name="StatusContainer">
         <ui:VisualElement class="status-row">
@@ -24,19 +40,9 @@
             <ui:ProgressBar name="Affection" class="status-progress" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="ShopContainer" class="container">
-        <ui:VisualElement name="TopBar">
-            <ui:Button name="Food" class="shop-view-button" style="background-image: url(&apos;project://database/Assets/Images/UI/hamburger.png?fileID=2800000&amp;guid=ef0a7a4ba2b0b1c47a9683529d86897b&amp;type=3#hamburger&apos;); -unity-background-scale-mode: scale-to-fit;" />
-            <ui:Button name="Toys" class="shop-view-button" style="background-image: url(&apos;project://database/Assets/Images/UI/beach-ball.png?fileID=2800000&amp;guid=f41ef9fea10f534418cf4381ca64663d&amp;type=3#beach-ball&apos;); -unity-background-scale-mode: scale-to-fit;" />
-            <ui:Button name="Furniture" class="shop-view-button" style="background-image: url(&apos;project://database/Assets/Images/UI/sofa.png?fileID=2800000&amp;guid=87c5f0d0d999f4e4b8458acbf2cbc667&amp;type=3#sofa&apos;); -unity-background-scale-mode: scale-to-fit;" />
-            <ui:Button name="Tools" class="shop-view-button" style="background-image: url(&apos;project://database/Assets/Images/UI/rake.png?fileID=2800000&amp;guid=8309b26d714260f4cac9d98954966eee&amp;type=3#rake&apos;); -unity-background-scale-mode: scale-to-fit;" />
-        </ui:VisualElement>
-        <ui:VisualElement name="FoodItems">
-            <ui:Button text="Fries">
-                <ui:VisualElement />
-            </ui:Button>
-        </ui:VisualElement>
+    <ui:VisualElement name="Home" class="container" />
+    <ui:VisualElement name="CurrencyContainer" style="right: 0;">
+        <ui:VisualElement name="CurrencyIcon" style="background-image: url(&apos;project://database/Assets/Images/UI/two-coins.png?fileID=2800000&amp;guid=32f3a9351e6d1e445b8ffef640233a86&amp;type=3#two-coins&apos;);" />
+        <ui:Label text="1,000,000" name="Currency" />
     </ui:VisualElement>
-    <ui:VisualElement name="JobsContainer" class="container" />
-    <ui:VisualElement name="HomeContainer" class="container" />
 </ui:UXML>

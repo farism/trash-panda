@@ -38,6 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\UI.cs" />
+     <Compile Include="Assets\Scripts\Globe.cs" />
      <None Include="Assets\UI\UI.uxml" />
      <None Include="Assets\UI\UI.uss" />
     <Reference Include="UnityEngine">
