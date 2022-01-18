@@ -1,0 +1,101 @@
+#Wrapper,
+#Wrapper * {
+  cursor: url("project://database/Assets/Images/UI/cursor-default.png");
+}
+
+#Wrapper Button {
+  cursor: url("project://database/Assets/Images/UI/cursor-pointer.png");
+}
+
+#Wrapper * {
+  -unity-font: resource("Poppins-Bold");
+  -unity-font-definition: none;
+}
+
+#Top {
+  justify-content: flex-start;
+  height: 128px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#Middle {
+  justify-content: center;
+  bottom: 128px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 128px;
+}
+
+#Bottom {
+  justify-content: flex-end;
+  bottom: 0;
+  height: 96px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+#Tooltip {
+  color: white;
+  font-size: 24px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  opacity: 0;
+  padding: 8px;
+  transition-duration: 0.2s;
+  transition-property: opacity, top, left;
+}
+
+#Tooltip.active {
+  opacity: 1;
+}
+
+#Tooltip Label {
+  margin: 0;
+  padding: 0;
+}
+
+.frame {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.background-frame {
+  background-color: rgba(10, 10, 10, 0.4);
+  border-radius: 32px;
+}
+
+.inner-frame {
+  background-color: rgba(244, 244, 244, 0.5);
+  border-color: rgba(62, 42, 20, 1);
+  border-radius: 48px;
+  border-width: 4px;
+}
+
+.item-frame {
+  background-color: rgba(244, 244, 244, 1);
+  border-color: rgba(62, 42, 20, 1);
+  border-radius: 42px;
+  border-width: 4px;
+}
+
+#Wrapper .yellow-button {
+  color: white;
+  background-color: #f1c413;
+  background-image: url("project://database/Assets/Images/UI/button-dots.png");
+  border-color: rgba(62, 42, 20, 1);
+  border-radius: 32px;
+  border-width: 4px;
+  height: 64px;
+}
+
+#Wrapper .yellow-button:hover {
+  background-color: #f7d54c;
+}

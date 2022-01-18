@@ -1,0 +1,18 @@
+{
+    "name": "FlexibleCelShaderEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:15d67c1d62ac3a14b953ce71f7db83a9"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

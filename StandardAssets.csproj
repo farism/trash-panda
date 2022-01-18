@@ -36,8 +36,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Plugins\QuickOutline\Scripts\Outline.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestCurveStatic.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGTriangulator2D.cs" />
+     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_LineButtonsContent.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestDirector.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGCurveReferenceToPoint.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGCurveFormulaMath.cs" />
@@ -65,11 +67,14 @@
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGCurveChangedArgs.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcMath.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGPpu.cs" />
+     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_DragBar.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcCursor.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcCursorObjectScale.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcTriangulate2D.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestCurveSnapping.cs" />
+     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_DrawGraphic.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGReflectionAdapter.cs" />
+     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_Lines.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGCurveFormulas.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestPerformance.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcWithCursor.cs" />
@@ -80,13 +85,25 @@
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGCurvePoint.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGCurve.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestCurveShowcase.cs" />
+     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_ZoomButton.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcSweep2D.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcWithCursorObject.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestCcChangeCursorLinear.cs" />
+     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_CoordinateAxis.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestCamera.cs" />
+     <Compile Include="Assets\Plugins\DataDiagram\Example\Sample.cs" />
+     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_LineButton.cs" />
+     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_DataDiagram.cs" />
+     <None Include="Assets\Plugins\SpriteOutline\Shaders\SpriteOutline.shader" />
+     <None Include="Assets\Plugins\QuickOutline\Resources\Shaders\OutlineMask.shader" />
      <None Include="Assets\Plugins\StandardAssets.asmdef" />
      <None Include="Assets\Plugins\BansheeGz\BGCurve\readme.txt" />
+     <None Include="Assets\Plugins\QuickOutline\Readme.txt" />
      <None Include="Assets\Plugins\Demigiant\DOTween\readme.txt" />
+     <None Include="Assets\Plugins\QuickOutline\Resources\Shaders\OutlineFill.shader" />
+     <None Include="Assets\Plugins\FlexibleCelShader\Shaders\CelNoOutline.shader" />
+     <None Include="Assets\Plugins\FlexibleCelShader\Shaders\CelSilhouette.shader" />
+     <None Include="Assets\Plugins\FlexibleCelShader\Shaders\CelOutline.shader" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.7f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

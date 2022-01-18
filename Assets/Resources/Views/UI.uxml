@@ -1,0 +1,140 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/Styles/Shop.uss?fileID=7433441132597879392&amp;guid=4250d0bb93945f0438abbd565f9eac60&amp;type=3#Shop" />
+    <Style src="project://database/Assets/Resources/Styles/UI.uss?fileID=7433441132597879392&amp;guid=889240535a1001840af5edc9c0cc2540&amp;type=3#UI" />
+    <Style src="project://database/Assets/Resources/Styles/Controls.uss?fileID=7433441132597879392&amp;guid=16d4252219de2e04f910567a2d2aed6a&amp;type=3#Controls" />
+    <Style src="project://database/Assets/Resources/Styles/Currency.uss?fileID=7433441132597879392&amp;guid=71f98736369a0f2429115e7abe94d993&amp;type=3#Currency" />
+    <Style src="project://database/Assets/Resources/Styles/Home.uss?fileID=7433441132597879392&amp;guid=e2bad6cc0aa3c8948acb7b1d12c584d8&amp;type=3#Home" />
+    <Style src="project://database/Assets/Resources/Styles/Jobs.uss?fileID=7433441132597879392&amp;guid=8267652d8c55c844b93ce747bb1f2406&amp;type=3#Jobs" />
+    <Style src="project://database/Assets/Resources/Styles/Modal.uss?fileID=7433441132597879392&amp;guid=223f8334616cb404b867a0af2a1d4282&amp;type=3#Modal" />
+    <Style src="project://database/Assets/Resources/Styles/Pollution.uss?fileID=7433441132597879392&amp;guid=4c232d52aa5b7df4ca225a35cdc406bf&amp;type=3#Pollution" />
+    <Style src="project://database/Assets/Resources/Styles/Status.uss?fileID=7433441132597879392&amp;guid=6f857f8328704a94eb0a1cfbb5624de5&amp;type=3#Status" />
+    <Style src="project://database/Assets/Resources/Styles/Unity.uss?fileID=7433441132597879392&amp;guid=6a26d77f4dc0c2044a81c462682b8060&amp;type=3#Unity" />
+    <ui:VisualElement name="Wrapper" class="frame">
+        <ui:VisualElement name="Home" class="frame" style="display: none;">
+            <ui:VisualElement name="FoodContainer">
+                <ui:Button name="FoodBtn" class="home-tab-button" style="background-image: url(&apos;project://database/Assets/Images/UI/hamburger.png?fileID=2800000&amp;guid=ef0a7a4ba2b0b1c47a9683529d86897b&amp;type=3#hamburger&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(0, 0, 0);" />
+                <ui:VisualElement name="Food">
+                    <ui:ScrollView name="Items" mode="Horizontal" class="shop-pane-items" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ToysContainer">
+                <ui:VisualElement name="Toys">
+                    <ui:ScrollView name="Items" class="shop-pane-items" />
+                </ui:VisualElement>
+                <ui:Button name="ToysBtn" class="home-tab-button" style="background-image: url(&apos;project://database/Assets/Images/UI/beach-ball.png?fileID=2800000&amp;guid=f41ef9fea10f534418cf4381ca64663d&amp;type=3#beach-ball&apos;); -unity-background-image-tint-color: rgb(0, 0, 0);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Shop" class="frame background-frame" style="display: none; background-color: rgba(0, 0, 0, 0.24);">
+            <ui:VisualElement name="ShopTabs">
+                <ui:Button name="FoodBtn" text="Food" class="shop-tab-button" />
+                <ui:Button name="ToysBtn" text="Toys" class="shop-tab-button" />
+                <ui:Button name="FurnitureBtn" text="Furniture" class="shop-tab-button" />
+                <ui:Button name="ToolsBtn" text="Tools" class="shop-tab-button" />
+                <ui:Button name="UpgradesBtn" text="Upgrades" class="shop-tab-button" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ShopPanes">
+                <ui:VisualElement name="Food" class="shop-pane frame inner-frame">
+                    <ui:ScrollView name="Items" class="shop-pane-items" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Toys" class="shop-pane frame inner-frame" style="display: none;">
+                    <ui:ScrollView name="Items" class="shop-pane-items" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Furniture" class="shop-pane frame inner-frame" style="display: none;">
+                    <ui:ScrollView name="Items" class="shop-pane-items" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Tools" class="shop-pane frame inner-frame" style="display: none;">
+                    <ui:ScrollView name="Items" class="shop-pane-items" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Upgrades" class="shop-pane frame inner-frame" style="display: none;">
+                    <ui:ScrollView name="Items" class="shop-pane-items" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Jobs" picking-mode="Ignore" class="frame" style="display: none;">
+            <ui:VisualElement name="Locations" picking-mode="Ignore" class="frame" />
+            <ui:VisualElement name="LocationInfo" picking-mode="Ignore" class="background-frame">
+                <ui:VisualElement name="LocationInfoInner" picking-mode="Ignore" class="item-frame">
+                    <ui:VisualElement name="LocationInfoCity" picking-mode="Ignore" class="location-info-image" style="background-image: url(&apos;project://database/Assets/Images/Environment/Jobs/city.png?fileID=2800000&amp;guid=6887a405cfb22a8458b3260392e3b367&amp;type=3#city&apos;); -unity-background-scale-mode: scale-and-crop;" />
+                    <ui:VisualElement name="LocationInfoDesert" picking-mode="Ignore" class="location-info-image" style="background-image: url(&apos;project://database/Assets/Images/Environment/Jobs/desert.png?fileID=2800000&amp;guid=d2c0e1b405e377348af795dc209379c2&amp;type=3#desert&apos;); -unity-background-scale-mode: scale-and-crop;" />
+                    <ui:VisualElement name="LocationInfoMeadow" picking-mode="Ignore" class="location-info-image" style="background-image: url(&apos;project://database/Assets/Images/Environment/Jobs/meadow.png?fileID=2800000&amp;guid=14a38ffc7f43bd449bf12820216e78d7&amp;type=3#meadow&apos;); -unity-background-scale-mode: scale-and-crop;" />
+                    <ui:Label text="Type: Sand" display-tooltip-when-elided="true" name="LocationInfoType" picking-mode="Ignore" />
+                    <ui:Label text="Timezone: PST" display-tooltip-when-elided="true" name="LocationInfoTimezone" picking-mode="Ignore" />
+                    <ui:Label text="Difficulty: Easy" display-tooltip-when-elided="true" name="LocationInfoDifficulty" picking-mode="Ignore" />
+                    <ui:Label text="Pollution Rate: 1" display-tooltip-when-elided="true" name="LocationInfoPollutionRate" picking-mode="Ignore" />
+                    <ui:Label text="Pollution: 230 kg" display-tooltip-when-elided="true" name="LocationInfoPollution" picking-mode="Ignore" />
+                    <ui:Label text="Reward: 250 shiny things" display-tooltip-when-elided="true" name="LocationInfoReward" picking-mode="Ignore" />
+                    <ui:Button text="Start" display-tooltip-when-elided="false" name="LocationInfoStart" focusable="false" class="yellow-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Job" class="frame" style="display: none;" />
+        <ui:VisualElement name="Top">
+            <ui:VisualElement name="PollutionContainer">
+                <ui:VisualElement name="Pollution" tooltip="Pollution">
+                    <ui:VisualElement name="PollutionFill" picking-mode="Ignore" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Currency">
+                <ui:VisualElement name="CurrencyIcon" style="background-image: url(&apos;project://database/Assets/Images/UI/two-coins.png?fileID=2800000&amp;guid=32f3a9351e6d1e445b8ffef640233a86&amp;type=3#two-coins&apos;);" />
+                <ui:Label text="1,000,000" name="CurrencyText" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Controls">
+                <ui:Button name="HomeBtn" focusable="false" text="Home" tooltip="Home" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/house.png?fileID=2800000&amp;guid=35addc19ad37218428eec9ac5b2fc373&amp;type=3#house&apos;);" />
+                <ui:Button name="ShopBtn" focusable="false" tooltip="Shop" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/price-tag.png?fileID=2800000&amp;guid=872a8d02feb06a7428f1b183fe5d5848&amp;type=3#price-tag&apos;);" />
+                <ui:Button name="JobsBtn" focusable="false" tooltip="Jobs" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/earth-america.png?fileID=2800000&amp;guid=353c98c3af571a44e85a2bd96e6896fe&amp;type=3#earth-america&apos;);" />
+                <ui:VisualElement name="_options">
+                    <ui:Button name="OptionsBtn" focusable="false" tooltip="Options" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/cog.png?fileID=2800000&amp;guid=82fa6101db941784482ff6ed5f910866&amp;type=3#cog&apos;);" />
+                    <ui:VisualElement name="Options" style="display: flex;">
+                        <ui:Button name="SoundMusicBtn" focusable="false" tooltip="Music" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/speaker.png?fileID=2800000&amp;guid=776d1f12542240d4fbbb8dbc509cfd8c&amp;type=3#speaker&apos;);" />
+                        <ui:Button name="SoundEffectsBtn" focusable="false" tooltip="Effects" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/speaker.png?fileID=2800000&amp;guid=776d1f12542240d4fbbb8dbc509cfd8c&amp;type=3#speaker&apos;);" />
+                        <ui:Button name="InfoBtn" focusable="false" tooltip="About" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/info.png?fileID=2800000&amp;guid=d268e136f52e1a541a8e3708816bc491&amp;type=3#info&apos;);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Bottom">
+            <ui:VisualElement name="Statuses">
+                <ui:VisualElement name="EnergyStatus" tooltip="Energy" class="status">
+                    <ui:VisualElement name="_icon" picking-mode="Ignore" class="status-icon" style="background-image: url(&apos;project://database/Assets/Images/UI/battery-pack.png?fileID=2800000&amp;guid=0c1fb585da85bdf42b5b2d652d30fe01&amp;type=3#battery-pack&apos;);" />
+                    <ui:VisualElement name="_bar" picking-mode="Ignore" class="status-bar">
+                        <ui:VisualElement name="Energy" picking-mode="Ignore" class="status-bar-fill" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="HungerStatus" tooltip="Hunger" class="status">
+                    <ui:VisualElement name="_icon" picking-mode="Ignore" class="status-icon" style="background-image: url(&apos;project://database/Assets/Images/UI/knife-fork.png?fileID=2800000&amp;guid=005d9555789ef22419499f9a1cda93e4&amp;type=3#knife-fork&apos;);" />
+                    <ui:VisualElement name="_bar" picking-mode="Ignore" class="status-bar">
+                        <ui:VisualElement name="Hunger" picking-mode="Ignore" class="status-bar-fill" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="LoveStatus" tooltip="Love" class="status">
+                    <ui:VisualElement name="_icon" picking-mode="Ignore" class="status-icon" style="background-image: url(&apos;project://database/Assets/Images/UI/hearts.png?fileID=2800000&amp;guid=69e6dc1501363b645816062aabd5b997&amp;type=3#hearts&apos;); -unity-text-align: middle-right;" />
+                    <ui:VisualElement name="_bar" picking-mode="Ignore" class="status-bar">
+                        <ui:VisualElement name="Love" picking-mode="Ignore" class="status-bar-fill" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Modals" picking-mode="Ignore" class="frame" style="opacity: 1;">
+            <ui:VisualElement name="InfoModal" picking-mode="Ignore" class="frame modal" style="opacity: 0; display: none;">
+                <ui:VisualElement name="_scrim" picking-mode="Ignore" class="frame modal-scrim" />
+                <ui:VisualElement name="_body" picking-mode="Ignore" class="frame modal-body inner-frame">
+                    <ui:Button text="&#10;" display-tooltip-when-elided="true" name="_close" focusable="false" class="modal-close" style="background-image: url(&apos;project://database/Assets/Images/UI/close.png?fileID=2800000&amp;guid=8eab811cbfc195944b22421bd794c2df&amp;type=3#close&apos;);" />
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Images/UI/title.png?fileID=2800000&amp;guid=3f3d7cc51c0a03341bdc34f20a5252be&amp;type=3#title&apos;); width: 329px; height: 102px;">
+                        <ui:Label text="Created By" display-tooltip-when-elided="true" name="_title" picking-mode="Ignore" class="info-text" style="color: rgb(255, 255, 255); height: 100px; -unity-text-align: middle-center; font-size: 36px; -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(62, 42, 20);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="item-frame author">
+                        <ui:Label text="James Smith&#10;&#10;Audio&#10;2D Art" display-tooltip-when-elided="true" name="_james" picking-mode="Ignore" class="info-text" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="item-frame author">
+                        <ui:Label text="Faris Mustafa&#10;&#10;Programming&#10;3D Art" display-tooltip-when-elided="true" name="_faris" picking-mode="Ignore" class="info-text" />
+                    </ui:VisualElement>
+                    <ui:Button text="Virtual Pet Jam 2022" display-tooltip-when-elided="true" name="JamLink" focusable="false" class="yellow-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Tooltip" picking-mode="Ignore">
+            <ui:Label text="Label" display-tooltip-when-elided="false" name="_text" picking-mode="Ignore" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ActiveItem" />
+    </ui:VisualElement>
+</ui:UXML>

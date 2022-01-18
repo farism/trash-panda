@@ -1,0 +1,55 @@
+.modal {
+  opacity: 0;
+  transition-duration: 0.5s;
+  transition-property: opacity;
+}
+
+.modal-scrim {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-body {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 128px;
+}
+
+.modal-close {
+  background-color: rgba(0, 0, 0, 0);
+  height: 48px;
+  position: absolute;
+  right: -16px;
+  top: -16px;
+  width: 48px;
+  transition-property: scale;
+  transition-duration: 0.2s;
+}
+
+.modal-close:hover {
+  scale: 1.25;
+}
+
+.info-text {
+  -unity-text-align: upper-center;
+  color: rgb(0, 0, 0);
+  font-size: 24px;
+}
+
+#InfoModal .author {
+  width: 329px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+#InfoModal #JamLink {
+  padding: 0 24px;
+  margin-top: 16px;
+  transition-duration: 0.4s;
+  transition-property: scale;
+  transition-timing-function: ease-out-elastic;
+}
+
+#InfoModal #JamLink:hover {
+  scale: 1.1;
+}

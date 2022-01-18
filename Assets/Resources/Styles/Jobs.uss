@@ -1,0 +1,91 @@
+#Jobs {
+}
+
+#Jobs .location {
+  border-color: rgba(255, 255, 255, 1);
+  border-radius: 100%;
+  display: none;
+  height: 48px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  transition-duration: 0.1s;
+  transition-property: opacity, scale, border-width;
+  width: 48px;
+}
+
+#Jobs .location.City {
+  background-color: grey;
+  border-color: rgb(165, 165, 165);
+}
+
+#Jobs .location.Desert {
+  background-color: burlywood;
+  border-color: rgb(230, 212, 189);
+}
+
+#Jobs .location.Meadow {
+  background-color: greenyellow;
+  border-color: rgb(217, 255, 160);
+}
+
+#Jobs .location:hover {
+  scale: 1.5;
+}
+
+.location-info-image {
+  display: none;
+  height: 72px;
+  margin-bottom: 4px;
+  width: 100%;
+}
+
+#LocationInfoCity.City {
+  display: flex;
+}
+
+#LocationInfoDesert.Desert {
+  display: flex;
+}
+
+#LocationInfoMeadow.Meadow {
+  display: flex;
+}
+
+#LocationInfo {
+  margin-top: 32px;
+  padding: 16px;
+  position: absolute;
+  transition-duration: 0.3s;
+  transition-property: opacity;
+}
+
+#LocationInfoInner {
+  border-radius: 16px;
+  padding: 12px;
+  width: 248px;
+}
+
+#LocationInfo .unity-label {
+  -unity-text-align: upper-center;
+  color: rgb(0, 0, 0);
+  margin: 4px;
+}
+
+#LocationInfoStart {
+  font-size: 18px;
+  margin-top: 8px;
+  transition-duration: 0.4s;
+  transition-property: scale;
+  transition-timing-function: ease-out-elastic;
+}
+
+#LocationInfoStart:hover {
+  cursor: link;
+  scale: 1.1;
+}
+
+#LocationInfoStart:active {
+  top: 1px;
+  left: 1px;
+}

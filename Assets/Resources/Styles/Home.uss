@@ -1,0 +1,90 @@
+#Home {
+  bottom: 64px;
+  flex-direction: column-reverse;
+  margin: 24px;
+  top: 128px;
+}
+
+#Home #ActiveItem {
+}
+
+#Home.moving #FoodContainer,
+#Home.moving #ToysContainer {
+  opacity: 0;
+}
+
+#Home Button {
+  background-color: white;
+  border-bottom-color: black;
+  border-bottom-width: 4px;
+  border-radius: 0;
+  border-right-color: black;
+  border-right-width: 4px;
+  height: 64px;
+  width: 64px;
+}
+
+#Home Button:hover {
+  scale: 1.1;
+}
+
+#Home Button:active {
+  background-color: white;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+  left: 2px;
+  top: 2px;
+}
+
+#FoodContainer {
+  align-items: center;
+  bottom: 48px;
+  flex-direction: row;
+  height: 100px;
+  left: 96px;
+  position: absolute;
+  right: 0;
+  transition: 0.2s opacity;
+}
+
+#FoodContainer #Food Button {
+  height: 72px;
+  margin-left: 8px;
+  width: 72px;
+}
+
+#FoodContainer #Food {
+  height: 100px;
+}
+
+#FoodContainer #Food #Items {
+  height: 100%;
+}
+
+#FoodContainer #Food #unity-content-container {
+  align-items: center;
+  height: 100%;
+}
+
+#ToysContainer {
+  bottom: 280px;
+  left: 460px;
+  position: absolute;
+  transition: 0.2s opacity;
+}
+
+#ToysContainer #Toys Button {
+  height: 72px;
+  margin-bottom: 8;
+  width: 72px;
+}
+
+#ToysContainer #Toys {
+  left: -18px;
+  width: 100px;
+}
+
+#ToysContainer #Toys #unity-content-container {
+  align-items: center;
+  width: 100%;
+}

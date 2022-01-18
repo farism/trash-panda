@@ -1,0 +1,78 @@
+.unity-button {
+  border-color: rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  margin: 0;
+  padding: 0;
+  transition-property: scale;
+  transition-duration: 0.2s;
+}
+
+.unity-progress-bar {
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.unity-progress-bar__background {
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+}
+
+.unity-progress-bar__container {
+  min-height: 8px;
+  max-height: 8px;
+}
+
+.unity-progress-bar__progress {
+  margin: 0;
+}
+
+.unity-scroller {
+  display: none;
+}
+
+.unity-scroller {
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#unity-low-button {
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#unity-high-button {
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#unity-tracker {
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#unity-dragger-border {
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#unity-dragger {
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  margin: 0;
+  padding: 0;
+}
