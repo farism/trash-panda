@@ -99,13 +99,13 @@ public class Game : MonoBehaviour
     public void ToggleSoundMusic()
     {
         soundMusic = !soundMusic;
-        // AudioListener.volume = soundMusic ? 1 : 0;
+        soundManager.SetMusicEnabled(soundMusic);
     }
 
     public void ToggleSoundEffects()
     {
         soundEffects = !soundEffects;
-        // AudioListener.volume = soundEffects ? 1 : 0;
+        soundManager.SetEffectsEnabled(soundEffects);
     }
 
     void Awake()
@@ -122,6 +122,7 @@ public class Game : MonoBehaviour
         SetActiveScreen(view);
         activeScreen.Show();
         ui.ShowView(view);
+        StartJob(0);
     }
 
     void Update()

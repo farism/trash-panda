@@ -38,7 +38,7 @@
 
 #FoodContainer {
   align-items: center;
-  bottom: 48px;
+  bottom: 0;
   flex-direction: row;
   height: 100px;
   left: 96px;

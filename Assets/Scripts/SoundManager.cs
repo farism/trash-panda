@@ -24,11 +24,14 @@ public class SoundManager : MonoBehaviour
     public AudioClip job;
     public AudioClip job2;
 
-    AudioSource audioSource;
+    AudioSource musicSource;
+    AudioSource effectsSource;
 
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        var audios = GetComponents<AudioSource>();
+        musicSource = audios[0];
+        effectsSource = audios[1];
     }
 
     public void PlayMusic(Music music)
@@ -44,16 +47,17 @@ public class SoundManager : MonoBehaviour
             clip = shop;
         }
 
-        if (clip != audioSource.clip)
+        if (clip != musicSource.clip)
         {
             DOTween
-                .To(() => audioSource.volume, (val) => audioSource.volume = val, 0, 1)
-                .OnComplete(() =>
-                {
-                    audioSource.clip = clip;
-                    audioSource.Play();
-                    DOTween.To(() => audioSource.volume, (val) => audioSource.volume = val, 1, 1);
-                });
+            .To(() => musicSource.volume, (val) => musicSource.volume = val, 0, 1)
+            .OnComplete(() =>
+            {
+                musicSource.clip = clip;
+                musicSource.Play();
+                DOTween.To(() => musicSource.volume, (val) => musicSource.volume = val, 0.5f, 1);
+            });
+
         }
     }
 
@@ -61,12 +65,22 @@ public class SoundManager : MonoBehaviour
     {
         if (effect == Effect.ButtonHover)
         {
-            audioSource.PlayOneShot(buttonHover, 2);
+            effectsSource.PlayOneShot(buttonHover, 2);
         }
         else if (effect == Effect.ButtonClick)
         {
-            audioSource.PlayOneShot(buttonClick, 2);
+            effectsSource.PlayOneShot(buttonClick, 2);
         }
+    }
+
+    public void SetMusicEnabled(bool enabled)
+    {
+        musicSource.enabled = enabled;
+    }
+
+    public void SetEffectsEnabled(bool enabled)
+    {
+        effectsSource.enabled = enabled;
     }
 
     void Start()

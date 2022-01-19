@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Steak
   m_EditorClassIdentifier: 
   type: 9
-  texture: {fileID: 2800000, guid: 9c49111d8de84ce4087f3035144619cd, type: 3}
+  texture: {fileID: 2800000, guid: 56f0d6528baf61b4ea8079a2a2c05639, type: 3}
   price: 75
   energy: 0
   hunger: 0

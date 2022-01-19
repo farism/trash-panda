@@ -6,32 +6,33 @@ using DG.Tweening;
 public class Job : MonoBehaviour, IScreen
 {
     public Game game;
+    public GameObject ground;
     public GameObject groundCity;
     public GameObject groundDesert;
     public GameObject groundMeadow;
-    public Rigidbody player;
+    public Collider borderLeft;
+    public Collider borderRight;
+    public Collider borderTop;
+    public Collider borderBottom;
+    public GameObject redcup;
+    public Player player;
+    public float spawnRateMin = 0;
+    public float spawnRateMax = 1;
+    public float cooldown = 5;
+    public float cooldownTimer = 0;
+    public float cooldownRatio { get => cooldownTimer / 5; }
+    public List<Trash> trashPile = new List<Trash>();
 
     Location location;
-    GameObject activeGround;
+    Renderer groundRenderer;
     Material activeMaterial;
     Vector3 origin = Vector3.zero;
-    Vector3 playerPos = Vector3.zero;
-    List<Rigidbody> trash = new List<Rigidbody>();
-    float nextSpawnTime;
 
     public void Show()
     {
         transform.position = Vector3.zero;
         transform.localScale = Vector3.one;
         gameObject.SetActive(true);
-
-        foreach (var body in GetComponentsInChildren<Rigidbody>())
-        {
-            if (body.tag == "Trash")
-            {
-                trash.Add(body);
-            }
-        }
     }
 
     public void Hide()
@@ -43,54 +44,63 @@ public class Job : MonoBehaviour, IScreen
 
     public void SetLocation(Location location)
     {
-        groundCity.SetActive(false);
-        groundDesert.SetActive(false);
-        groundMeadow.SetActive(false);
-
-        if (location.type == JobType.City)
-        {
-            activeGround = groundCity;
-        }
-        else if (location.type == JobType.Desert)
-        {
-            activeGround = groundDesert;
-        }
-        else if (location.type == JobType.Meadow)
-        {
-            activeGround = groundMeadow;
-        }
-
-        activeGround.SetActive(true);
-        activeMaterial = activeGround.GetComponent<Renderer>().material;
-
         this.location = location;
+        GameObject go = GroundFromJobType(this.location.type);
+        if (go)
+        {
+            activeMaterial = go.GetComponent<Renderer>().material;
+            groundRenderer.material = activeMaterial;
+        }
+    }
+
+    public void ActivateTool(Tool tool)
+    {
+        if (cooldownTimer == 0)
+        {
+            cooldownTimer = cooldown;
+
+            player.SetTool(tool);
+        }
+    }
+
+    public void DestroyTrash(Trash trash)
+    {
+
     }
 
     void Awake()
     {
         origin = transform.position;
+        groundRenderer = ground.GetComponent<Renderer>();
         gameObject.SetActive(false);
     }
 
     void Start()
     {
+        StartCoroutine(SpawnTimer());
     }
 
     void Update()
     {
         if (game.view == View.Job)
         {
-            UpdateGroundTexture();
+            UpdateCooldown();
 
-            UpdateTrashList();
+            UpdateGroundTexture();
         }
     }
 
     void FixedUpdate()
     {
-        UpdatePlayerPosition();
+        if (game.view == View.Job)
+        {
+            UpdateTrashPositions();
+        }
+    }
 
-        UpdateTrashPositions();
+    void UpdateCooldown()
+    {
+        cooldownTimer = Mathf.Max(0, cooldownTimer - Time.deltaTime);
     }
 
     void UpdateGroundTexture()
@@ -103,54 +113,59 @@ public class Job : MonoBehaviour, IScreen
         }
     }
 
-    void UpdateTrashList()
+    void UpdateTrashPositions()
     {
-        nextSpawnTime = Mathf.Max(0, nextSpawnTime - Time.deltaTime);
-
-        if (nextSpawnTime == 0)
+        foreach (var trash in trashPile)
         {
-            // var go = Instantiate(trashPrefab1);
-
-            // trash.Add(go.GetComponent<Rigidbody>());
-
-            // nextSpawnTime = Random.Range(1, 3);
+            var pos = trash.rb.position;
+            pos.y -= Time.deltaTime;
+            trash.rb.position = pos;
         }
     }
 
-    void UpdatePlayerPosition()
+    IEnumerator SpawnTimer()
     {
-        var pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+        yield return new WaitForSeconds(Random.Range(spawnRateMin, spawnRateMax));
 
-        playerPos = Vector3.Lerp(playerPos, new Vector3(pos.x, pos.y, 0), Time.deltaTime);
+        if (game.view == View.Job)
+        {
+            Spawn();
+        }
 
-        playerPos.x = Mathf.Max(-3.6f, Mathf.Min(3.6f, playerPos.x));
-
-        playerPos.y = Mathf.Max(-5f, Mathf.Min(5f, playerPos.y));
-
-        player.MovePosition(playerPos);
-
-        player.MoveRotation(Quaternion.LookRotation((playerPos - player.transform.position).normalized, Vector3.back));
+        StartCoroutine(SpawnTimer());
     }
 
-    void UpdateTrashPositions()
+    GameObject GroundFromJobType(JobType type)
     {
-        foreach (var t in trash)
+        switch (type)
         {
-            // var av = t.angularVelocity;
-            // av.x = 0;
-            // av.y = 0;
+            case JobType.City:
+                return groundCity;
+            case JobType.Desert:
+                return groundDesert;
+            case JobType.Meadow:
+                return groundMeadow;
+            default:
+                return groundCity;
+        }
+    }
 
-            // t.angularVelocity = av;
+    void Spawn()
+    {
+        var count = Random.Range(0, 2);
+        for (var i = 0; i < count; i++)
+        {
+            var go = Instantiate(redcup);
 
-            // var rot = t.gameObject.transform.rotation;
-            // rot.x = 0;
-            // rot.y = 0;
+            var collider = go.GetComponent<Collider>();
+            Physics.IgnoreCollision(collider, borderTop);
+            Physics.IgnoreCollision(collider, borderBottom);
 
-            // t.gameObject.transform.rotation = rot;
+            var t = go.GetComponent<Trash>();
+            t.transform.position = new Vector3(Random.Range(-3, 3), 10, -2);
+            t.transform.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
 
-            var pos = t.position;
-            pos.y -= Time.deltaTime;
-            t.position = pos;
+            trashPile.Add(t);
         }
     }
 }

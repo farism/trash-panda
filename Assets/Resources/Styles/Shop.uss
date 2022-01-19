@@ -67,6 +67,10 @@
   margin: 24px 48px;
 }
 
+:root {
+  --unity-metrics-single_line-height: 500px;
+}
+
 .shop-items {
   flex-grow: 1;
   flex-wrap: wrap;

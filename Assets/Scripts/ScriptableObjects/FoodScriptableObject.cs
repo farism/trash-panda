@@ -2,17 +2,17 @@ using UnityEngine;
 
 public enum Food
 {
-    Cookie,
     Cupcake,
     Fries,
     Hamburger,
     Hotdog,
     Juice,
+    Milk,
     Milkshake,
     Pizza,
     Soda,
     Steak,
-    Twinkie,
+    Taco,
     Water,
 }
 

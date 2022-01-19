@@ -36,46 +36,50 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Screens\Job.cs" />
-     <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\Scripts\Inventory.cs" />
      <Compile Include="Assets\Scripts\Status.cs" />
-     <Compile Include="Assets\Scripts\UI\UIJobs.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\FurnitureScriptableObject.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\ToolScriptableObject.cs" />
-     <Compile Include="Assets\Scripts\UI\UI.cs" />
-     <Compile Include="Assets\Scripts\UI\UICurrency.cs" />
+     <Compile Include="Assets\Scripts\SpriteOutliner.cs" />
      <Compile Include="Assets\Scripts\Boundary.cs" />
-     <Compile Include="Assets\Scripts\UI\UIShop.cs" />
      <Compile Include="Assets\Scripts\Location.cs" />
+     <Compile Include="Assets\Scripts\Trash.cs" />
      <Compile Include="Assets\Scripts\Utils.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\FoodScriptableObject.cs" />
      <Compile Include="Assets\Scripts\Screens\Shop.cs" />
      <Compile Include="Assets\Scripts\Food.cs" />
-     <Compile Include="Assets\Scripts\Screens\Home.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\ToyScriptableObject.cs" />
-     <Compile Include="Assets\Scripts\UI\UIHome.cs" />
      <Compile Include="Assets\Scripts\UI\UIJob.cs" />
+     <Compile Include="Assets\Scripts\SoundManager.cs" />
+     <Compile Include="Assets\Scripts\UI\UIControls.cs" />
+     <Compile Include="Assets\Scripts\UI\UIPollution.cs" />
+     <Compile Include="Assets\Scripts\Screens\Job.cs" />
+     <Compile Include="Assets\Scripts\Game.cs" />
+     <Compile Include="Assets\Scripts\UI\UIJobs.cs" />
+     <Compile Include="Assets\Scripts\UI\UI.cs" />
+     <Compile Include="Assets\Scripts\UI\UICurrency.cs" />
+     <Compile Include="Assets\Scripts\UI\UIShop.cs" />
+     <Compile Include="Assets\Scripts\Screens\Home.cs" />
+     <Compile Include="Assets\Scripts\UI\UIHome.cs" />
      <Compile Include="Assets\Scripts\Screens\Jobs.cs" />
      <Compile Include="Assets\Scripts\UI\UIStatus.cs" />
      <Compile Include="Assets\Scripts\Types.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\ShopScriptableObject.cs" />
-     <Compile Include="Assets\Scripts\UI\UIControls.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\UpgradeScriptableObject.cs" />
-     <Compile Include="Assets\Scripts\UI\UIPollution.cs" />
-     <Compile Include="Assets\Scripts\SpriteOutliner.cs" />
-     <Compile Include="Assets\Scripts\SoundManager.cs" />
      <None Include="Assets\Resources\Styles\Currency.uss" />
      <None Include="Assets\Resources\Styles\Modal.uss" />
      <None Include="Assets\Resources\Styles\Shop.uss" />
      <None Include="Assets\Resources\Styles\Jobs.uss" />
      <None Include="Assets\Resources\Styles\Home.uss" />
      <None Include="Assets\Resources\Views\UI.uxml" />
+     <None Include="Assets\Resources\Styles\Job.uss" />
      <None Include="Assets\Resources\Styles\Controls.uss" />
      <None Include="Assets\Resources\Views\ShopItem.uxml" />
      <None Include="Assets\Resources\Styles\UI.uss" />
      <None Include="Assets\Resources\Styles\Unity.uss" />
+     <None Include="Assets\Resources\Styles\Counter.uss" />
      <None Include="Assets\Resources\Styles\Pollution.uss" />
      <None Include="Assets\Resources\Styles\Status.uss" />
     <Reference Include="UnityEngine">
@@ -702,12 +706,6 @@
     <Reference Include="System.Xml.Serialization">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.7f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Flow.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Recorder.Editor">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Recorder.Editor.dll</HintPath>
     </Reference>
@@ -720,44 +718,23 @@
     <Reference Include="Unity.2D.PixelPerfect">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Recorder.Base">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Recorder.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Animation.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="PsdPlugin">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualStudio.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Core.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Burst.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
+    <Reference Include="Unity.Searcher.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.IK.Editor">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+    <Reference Include="Unity.ProBuilder">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Path.Editor">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
@@ -768,14 +745,86 @@
     <Reference Include="UnityEditor.UI">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Rider.Editor">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.IK.Runtime">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Flow.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualEffectGraph.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.VisualEffectGraph.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder.Base">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Recorder.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualStudio.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualEffectGraph.Runtime">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Core.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Psdimporter.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
@@ -789,17 +838,14 @@
     <Reference Include="Unity.Mathematics">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.IK.Runtime">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Burst">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Psdimporter.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
@@ -810,11 +856,8 @@
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridge.001">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
@@ -822,8 +865,8 @@
     <Reference Include="Unity.2D.SpriteShape.Editor">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Common.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
@@ -831,48 +874,23 @@
     <Reference Include="Unity.VisualScripting.State">
         <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Recorder">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Searcher.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ShaderGraph.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AddOns.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.Editor">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
-        <HintPath>C:\Users\FarisITX\Documents\Projects\Trash Panda\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="StandardAssets.csproj">
-      <Project>{238490ff-9802-ac27-69ea-bc55c42cb93c}</Project>
-      <Name>StandardAssets</Name>
-    </ProjectReference>
     <ProjectReference Include="BGCurveEditor.csproj">
       <Project>{07a28f9e-abde-fb79-8def-e6081cf9064c}</Project>
       <Name>BGCurveEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="OEBIF.csproj">
+      <Project>{8dfa9ba8-a7ff-7caf-23c1-9a20c54400f4}</Project>
+      <Name>OEBIF</Name>
+    </ProjectReference>
+    <ProjectReference Include="DataDiagramEditor.csproj">
+      <Project>{ab5b7618-010d-e3ea-1182-3249c7a4c5d2}</Project>
+      <Name>DataDiagramEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="StandardAssets.csproj">
+      <Project>{238490ff-9802-ac27-69ea-bc55c42cb93c}</Project>
+      <Name>StandardAssets</Name>
     </ProjectReference>
     <ProjectReference Include="DOTween.Modules.csproj">
       <Project>{c123722a-9be6-6503-0930-12b97f1c101a}</Project>
@@ -881,14 +899,6 @@
     <ProjectReference Include="FlexibleCelShaderEditor.csproj">
       <Project>{5174f35f-6a94-1549-1854-c4c1a8fc52f8}</Project>
       <Name>FlexibleCelShaderEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="DataDiagramEditor.csproj">
-      <Project>{ab5b7618-010d-e3ea-1182-3249c7a4c5d2}</Project>
-      <Name>DataDiagramEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="OEBIF.csproj">
-      <Project>{8dfa9ba8-a7ff-7caf-23c1-9a20c54400f4}</Project>
-      <Name>OEBIF</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

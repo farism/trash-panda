@@ -36,13 +36,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Plugins\OutlineEffect\Samples\Demo\MaterialSwitcher.cs" />
-     <Compile Include="Assets\Plugins\OutlineEffect\Samples\Demo\OutlineAnimation.cs" />
-     <Compile Include="Assets\Plugins\OutlineEffect\Samples\Demo\Rotate.cs" />
-     <Compile Include="Assets\Plugins\OutlineEffect\Samples\Demo\Toggle.cs" />
      <Compile Include="Assets\Plugins\OutlineEffect\OutlineEffect\LinkedSet.cs" />
-     <Compile Include="Assets\Plugins\OutlineEffect\OutlineEffect\Outline.cs" />
+     <Compile Include="Assets\Plugins\OutlineEffect\Samples\Demo\OutlineAnimation.cs" />
+     <Compile Include="Assets\Plugins\OutlineEffect\Samples\Demo\Toggle.cs" />
      <Compile Include="Assets\Plugins\OutlineEffect\OutlineEffect\OutlineEffect.cs" />
+     <Compile Include="Assets\Plugins\OutlineEffect\OutlineEffect\Outline.cs" />
+     <Compile Include="Assets\Plugins\OutlineEffect\Samples\Demo\Rotate.cs" />
+     <Compile Include="Assets\Plugins\OutlineEffect\Samples\Demo\MaterialSwitcher.cs" />
      <None Include="Assets\Plugins\OutlineEffect\OutlineEffect\Resources\OutlineBufferShader.shader" />
      <None Include="Assets\Plugins\OutlineEffect\OutlineEffect.asmdef" />
      <None Include="Assets\Plugins\OutlineEffect\OutlineEffect\Resources\OutlineShader.shader" />

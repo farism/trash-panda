@@ -1,0 +1,57 @@
+#Job {
+  bottom: 96px;
+}
+
+#Skills {
+  bottom: 0;
+  flex-direction: row;
+  justify-content: center;
+  position: absolute;
+  align-items: center;
+  width: 100%;
+}
+
+#Skills Button {
+  color: black;
+  -unity-background-scale-mode: scale-to-fit;
+  background-color: white;
+  border-bottom-color: black;
+  border-bottom-width: 4px;
+  border-radius: 0;
+  border-right-color: black;
+  border-right-width: 4px;
+  height: 64px;
+  font-size: 24px;
+  margin: 0 4px;
+  width: 64px;
+  overflow: none;
+}
+
+#Skills Button:hover {
+  scale: 1.1;
+}
+
+#Skills Button:active {
+  background-color: white;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+  left: 2px;
+  top: 2px;
+}
+
+#Skills Button .yellow-button {
+  border-radius: 12px;
+  color: rgba(62, 42, 20, 1);
+  height: 24px;
+  left: 6px;
+  padding: 12px;
+  position: absolute;
+  top: 48px;
+  width: 48px;
+}
+
+.skill-cooldown {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 0;
+}

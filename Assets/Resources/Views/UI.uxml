@@ -9,6 +9,8 @@
     <Style src="project://database/Assets/Resources/Styles/Pollution.uss?fileID=7433441132597879392&amp;guid=4c232d52aa5b7df4ca225a35cdc406bf&amp;type=3#Pollution" />
     <Style src="project://database/Assets/Resources/Styles/Status.uss?fileID=7433441132597879392&amp;guid=6f857f8328704a94eb0a1cfbb5624de5&amp;type=3#Status" />
     <Style src="project://database/Assets/Resources/Styles/Unity.uss?fileID=7433441132597879392&amp;guid=6a26d77f4dc0c2044a81c462682b8060&amp;type=3#Unity" />
+    <Style src="project://database/Assets/Resources/Styles/Job.uss?fileID=7433441132597879392&amp;guid=c4fb38b56853f234496575486ba2e6be&amp;type=3#Job" />
+    <Style src="project://database/Assets/Resources/Styles/Counter.uss?fileID=7433441132597879392&amp;guid=fb9115bf87b43d54a822ce658fdd939c&amp;type=3#Counter" />
     <ui:VisualElement name="Wrapper" class="frame">
         <ui:VisualElement name="Home" class="frame" style="display: none;">
             <ui:VisualElement name="FoodContainer">
@@ -67,14 +69,37 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="Job" class="frame" style="display: none;" />
+        <ui:VisualElement name="Job" class="frame" style="display: flex;">
+            <ui:VisualElement name="Skills">
+                <ui:Button display-tooltip-when-elided="false" name="Skill0" focusable="false" class="skill-button">
+                    <ui:VisualElement name="_cooldown" class="skill-cooldown" />
+                    <ui:Label text="1" display-tooltip-when-elided="true" name="_number" class="yellow-button" />
+                </ui:Button>
+                <ui:Button display-tooltip-when-elided="false" name="Skill1" focusable="false" class="skill-button" style="background-image: url(&apos;project://database/Assets/Images/Items/Tools/spike.png?fileID=2800000&amp;guid=43975428fcb30334b85907bba1afe3a9&amp;type=3#spike&apos;);">
+                    <ui:VisualElement name="_cooldown" class="skill-cooldown" />
+                    <ui:Label text="2" display-tooltip-when-elided="true" name="_number" class="yellow-button" />
+                </ui:Button>
+                <ui:Button display-tooltip-when-elided="false" name="Skill2" focusable="false" class="skill-button" style="background-image: url(&apos;project://database/Assets/Images/Items/Tools/grabber.jpg?fileID=2800000&amp;guid=28f929d60673efd4b9e89df879f14891&amp;type=3#grabber&apos;);">
+                    <ui:VisualElement name="_cooldown" class="skill-cooldown" />
+                    <ui:Label text="3" display-tooltip-when-elided="true" name="_number" class="yellow-button" />
+                </ui:Button>
+                <ui:Button display-tooltip-when-elided="false" name="Skill3" focusable="false" class="skill-button" style="background-image: url(&apos;project://database/Assets/Images/Items/Tools/leafblower.jpg?fileID=2800000&amp;guid=9a257e3f26d25d541803cdb38df076cc&amp;type=3#leafblower&apos;);">
+                    <ui:VisualElement name="_cooldown" class="skill-cooldown" />
+                    <ui:Label text="4" display-tooltip-when-elided="true" name="_number" class="yellow-button" />
+                </ui:Button>
+                <ui:Button display-tooltip-when-elided="false" name="Skill4" focusable="false" class="skill-button" style="background-image: url(&apos;project://database/Assets/Images/Items/Tools/bulldozer.png?fileID=2800000&amp;guid=f884694b30edf4c41a7ae407d9e14b85&amp;type=3#bulldozer&apos;);">
+                    <ui:VisualElement name="_cooldown" class="skill-cooldown" />
+                    <ui:Label text="5" display-tooltip-when-elided="true" name="_number" class="yellow-button" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement name="Top">
             <ui:VisualElement name="PollutionContainer">
                 <ui:VisualElement name="Pollution" tooltip="Pollution">
                     <ui:VisualElement name="PollutionFill" picking-mode="Ignore" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="Currency">
+            <ui:VisualElement name="Currency" class="item-frame">
                 <ui:VisualElement name="CurrencyIcon" style="background-image: url(&apos;project://database/Assets/Images/UI/two-coins.png?fileID=2800000&amp;guid=32f3a9351e6d1e445b8ffef640233a86&amp;type=3#two-coins&apos;);" />
                 <ui:Label text="1,000,000" name="CurrencyText" />
             </ui:VisualElement>
@@ -90,6 +115,9 @@
                         <ui:Button name="InfoBtn" focusable="false" tooltip="About" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/info.png?fileID=2800000&amp;guid=d268e136f52e1a541a8e3708816bc491&amp;type=3#info&apos;);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Counter" class="item-frame">
+                <ui:Label text="59 Days" display-tooltip-when-elided="true" name="CounterText" picking-mode="Ignore" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Bottom">
@@ -120,7 +148,7 @@
                 <ui:VisualElement name="_body" picking-mode="Ignore" class="frame modal-body inner-frame">
                     <ui:Button text="&#10;" display-tooltip-when-elided="true" name="_close" focusable="false" class="modal-close" style="background-image: url(&apos;project://database/Assets/Images/UI/close.png?fileID=2800000&amp;guid=8eab811cbfc195944b22421bd794c2df&amp;type=3#close&apos;);" />
                     <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Images/UI/title.png?fileID=2800000&amp;guid=3f3d7cc51c0a03341bdc34f20a5252be&amp;type=3#title&apos;); width: 329px; height: 102px;">
-                        <ui:Label text="Created By" display-tooltip-when-elided="true" name="_title" picking-mode="Ignore" class="info-text" style="color: rgb(255, 255, 255); height: 100px; -unity-text-align: middle-center; font-size: 36px; -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(62, 42, 20);" />
+                        <ui:Label text="Created By" display-tooltip-when-elided="true" name="_title" picking-mode="Ignore" class="info-text" style="height: 100%; -unity-text-align: middle-center; font-size: 36px; color: rgb(255, 255, 255);" />
                     </ui:VisualElement>
                     <ui:VisualElement class="item-frame author">
                         <ui:Label text="James Smith&#10;&#10;Audio&#10;2D Art" display-tooltip-when-elided="true" name="_james" picking-mode="Ignore" class="info-text" />
@@ -135,6 +163,6 @@
         <ui:VisualElement name="Tooltip" picking-mode="Ignore">
             <ui:Label text="Label" display-tooltip-when-elided="false" name="_text" picking-mode="Ignore" />
         </ui:VisualElement>
-        <ui:VisualElement name="ActiveItem" />
+        <ui:VisualElement name="ActiveItem" text="2" />
     </ui:VisualElement>
 </ui:UXML>

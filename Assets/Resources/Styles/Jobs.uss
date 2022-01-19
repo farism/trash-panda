@@ -73,11 +73,15 @@
 }
 
 #LocationInfoStart {
+  border-radius: 24px;
   font-size: 18px;
+  height: 48px;
   margin-top: 8px;
   transition-duration: 0.4s;
   transition-property: scale;
   transition-timing-function: ease-out-elastic;
+  width: 128px;
+  align-self: center;
 }
 
 #LocationInfoStart:hover {

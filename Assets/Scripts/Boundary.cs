@@ -5,6 +5,14 @@ using DG.Tweening;
 
 public class Boundary : MonoBehaviour
 {
+
+    SpriteRenderer spriteRenderer;
+
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     void Start()
     {
     }
@@ -19,5 +27,15 @@ public class Boundary : MonoBehaviour
         {
             collision.gameObject.transform.DOScale(0, 0.5f).SetEase(Ease.InBack);
         }
+    }
+
+    void OnMouseEnter()
+    {
+        spriteRenderer.DOColor(Color.yellow, 0.3f);
+    }
+
+    void OnMouseExit()
+    {
+        spriteRenderer.DOColor(Color.green, 0.3f);
     }
 }
