@@ -21,6 +21,6 @@ public class UICurrency : MonoBehaviour
     {
         lerpedCurrency = Mathf.Lerp(lerpedCurrency, game.inventory.currency, 0.025f);
 
-        currency.text = Mathf.RoundToInt(lerpedCurrency).ToString();
+        currency.text = Mathf.RoundToInt(lerpedCurrency).ToString("n0");
     }
 }

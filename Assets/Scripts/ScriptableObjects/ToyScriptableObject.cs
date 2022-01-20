@@ -3,9 +3,9 @@ using UnityEngine;
 public enum Toy
 {
     Beachball,
+    CatTree,
     Chewtoy,
     LaserPointer,
-    Tunnel,
 }
 
 [CreateAssetMenu(fileName = "ToyScriptableObject", menuName = "ScriptableObjects/ToyScriptableObject", order = 1)]

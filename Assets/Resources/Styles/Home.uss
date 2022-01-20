@@ -5,7 +5,14 @@
   top: 128px;
 }
 
-#Home #ActiveItem {
+#ActiveItem {
+  -unity-background-scale-mode: scale-to-fit;
+  height: 128px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  translate: -50% -50%;
+  width: 128px;
 }
 
 #Home.moving #FoodContainer,
@@ -13,17 +20,20 @@
   opacity: 0;
 }
 
-#Home Button {
+#Home .food-button,
+#Home .toy-button {
   border-radius: 8px;
   height: 64px;
   width: 64px;
 }
 
-#Home Button:hover {
+#Home .food-button:hover,
+#Home .toy-button:hover {
   scale: 1.1;
 }
 
-#Home Button:active {
+#Home .food-button:active,
+#Home .toy-button:active {
   left: 1px;
   top: 1px;
 }
@@ -31,6 +41,16 @@
 #FoodBtn,
 #ToysBtn {
   border-width: 3px;
+  width: 72px;
+  height: 72px;
+  transition-duration: 0.2s;
+  transition-property: scale, rotate;
+}
+
+#FoodBtn:hover,
+#ToysBtn:hover {
+  rotate: -15deg;
+  scale: 1.1;
 }
 
 #Home .unity-scroller {
@@ -51,7 +71,11 @@
 #Home .food-button,
 #Home .toy-button {
   background-color: white;
+  cursor: url("project://database/Assets/Images/UI/cursor-pointer.png");
   height: 72px;
+  overflow: none;
+  transition-duration: 0.2s;
+  transition-property: scale;
   width: 72px;
 }
 
@@ -59,8 +83,20 @@
   margin-left: 8px;
 }
 
+#Home .food-button Label {
+  position: absolute;
+  bottom: -6px;
+  right: 0;
+}
+
 #Home .toy-button {
   margin-bottom: 8px;
+}
+
+#Home #Food,
+#Home #Toys {
+  transition-duration: 0.2s;
+  transition-property: opacity;
 }
 
 #Home #Food {
@@ -101,7 +137,7 @@
 }
 
 #ToysContainer {
-  bottom: 280px;
+  bottom: 244px;
   left: 460px;
   position: absolute;
   transition: 0.2s opacity;

@@ -6,7 +6,7 @@ public class SpriteOutliner : MonoBehaviour
 {
     public UI ui;
     public UIHome uihome;
-    public Color color = Color.clear;
+    public Color color = Color.yellow;
     public float thickness = 4;
 
     new SpriteRenderer renderer;
@@ -30,35 +30,51 @@ public class SpriteOutliner : MonoBehaviour
         renderer.material = material;
     }
 
+    void ShowDefaultCursor()
+    {
+        Cursor.SetCursor(ui.defaultCursor, new Vector2(12, 12), CursorMode.Auto);
+    }
+
+    void ShowHandCursor()
+    {
+        Cursor.SetCursor(ui.handCursor, new Vector2(12, 12), CursorMode.Auto);
+    }
+
+    void ShowOutline()
+    {
+        renderer.material.DOColor(color, "_SolidOutline", 0.3f);
+    }
+
+    void HideOutline()
+    {
+        renderer.material.DOColor(Color.clear, "_SolidOutline", 0.3f);
+    }
+
     void OnMouseEnter()
     {
-        if (!uihome.isMouseOverUI && renderer.material.color != Color.yellow)
+        if (!uihome.isMouseOverUI)
         {
-            renderer.material.DOColor(Color.yellow, "_SolidOutline", 0.3f);
+            ShowHandCursor();
+            ShowOutline();
         }
     }
 
     void OnMouseExit()
     {
-        Cursor.SetCursor(ui.defaultCursor, new Vector2(10, 10), CursorMode.Auto);
-        renderer.material.DOColor(Color.clear, "_SolidOutline", 0.3f);
+        if (!uihome.isMouseOverUI)
+        {
+            ShowDefaultCursor();
+        }
+
+        HideOutline();
     }
 
     void OnMouseOver()
     {
-        Cursor.SetCursor(ui.handCursor, new Vector2(10, 10), CursorMode.Auto);
-
-        if (!uihome.isMouseOverUI && renderer.material.color != Color.yellow)
-        {
-            renderer.material.DOColor(Color.yellow, "_SolidOutline", 0.3f);
-        }
-    }
-
-    void OnMouseDown()
-    {
         if (!uihome.isMouseOverUI)
         {
-            Debug.Log("using sprite item");
+            ShowHandCursor();
+            renderer.material.SetColor("_SolidOutline", color);
         }
     }
 }

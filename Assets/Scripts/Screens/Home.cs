@@ -8,6 +8,10 @@ public class Home : MonoBehaviour, IScreen
     public GameObject raccoonSide;
     public GameObject background;
     public SpriteRenderer backgroundImage;
+    public Bed smallbed;
+    public Bed beanbag;
+    public Bed futon;
+    public Bed bigbed;
 
     Vector3 origin = Vector3.zero;
     float edge = 0;
@@ -32,17 +36,42 @@ public class Home : MonoBehaviour, IScreen
 
     public void Feed(FoodScriptableObject food)
     {
-        Debug.Log(food);
+        game.inventory.ConsumeFood(food);
+        game.stats.AddEnergy(food.energy);
+        game.stats.AddHunger(food.hunger);
+        game.stats.AddLove(food.love);
     }
 
     public void Play(ToyScriptableObject toy)
     {
-        Debug.Log(toy);
+        game.stats.AddEnergy(toy.energy);
+        game.stats.AddHunger(toy.hunger);
+        game.stats.AddLove(toy.love);
     }
 
-    public void Sleep(Furniture furniture)
+    public void UpdateFurniture()
     {
-        Debug.Log(furniture);
+        bigbed.gameObject.SetActive(false);
+        futon.gameObject.SetActive(false);
+        beanbag.gameObject.SetActive(false);
+        smallbed.gameObject.SetActive(false);
+
+        if (game.inventory.furnitureBigBed)
+        {
+            bigbed.gameObject.SetActive(true);
+        }
+        else if (game.inventory.furnitureFuton)
+        {
+            futon.gameObject.SetActive(true);
+        }
+        else if (game.inventory.furnitureBeanbag)
+        {
+            beanbag.gameObject.SetActive(true);
+        }
+        else if (game.inventory.furnitureSmallBed)
+        {
+            smallbed.gameObject.SetActive(true);
+        }
     }
 
     void Awake()
@@ -52,6 +81,7 @@ public class Home : MonoBehaviour, IScreen
 
     void Start()
     {
+        UpdateFurniture();
     }
 
     void Update()

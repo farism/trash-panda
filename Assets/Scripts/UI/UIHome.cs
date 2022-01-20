@@ -15,8 +15,8 @@ public class UIHome : MonoBehaviour, IScreen
     Button toysBtn;
     VisualElement food;
     VisualElement toys;
-    List<Button> foodBtns = new List<Button>();
-    List<Button> toyBtns = new List<Button>();
+    List<VisualElement> foodBtns = new List<VisualElement>();
+    List<VisualElement> toyBtns = new List<VisualElement>();
     FoodScriptableObject activeFood;
     ToyScriptableObject activeToy;
     bool prevActive = false;
@@ -35,20 +35,22 @@ public class UIHome : MonoBehaviour, IScreen
     {
         root = GetComponent<UIDocument>().rootVisualElement;
 
-        home = root.Q<VisualElement>("Home");
+        activeItem = root.Q<VisualElement>("ActiveItem");
 
-        activeItem = home.Q<VisualElement>("ActiveItem");
+        home = root.Q<VisualElement>("Home");
 
         food = home.Q<VisualElement>("Food");
         var foodItems = food.Q<ScrollView>("Items");
-        foreach (var food in shopSO.food)
+        foreach (var so in shopSO.food)
         {
-            var btn = new Button();
+            var btn = new VisualElement();
             btn.AddToClassList("food-button");
-            btn.Add(CreateButtonIcon(food.texture));
+            btn.Add(CreateButtonIcon(so.texture));
+            btn.Add(CreateButtonLabel());
             btn.RegisterCallback<MouseDownEvent>((ctx) =>
             {
-                activeFood = food;
+                SetActiveFood(so);
+                UI.Hide(food);
             });
             foodItems.Add(btn);
             foodBtns.Add(btn);
@@ -56,14 +58,15 @@ public class UIHome : MonoBehaviour, IScreen
 
         toys = home.Q<VisualElement>("Toys");
         var toyItems = toys.Q<ScrollView>("Items");
-        foreach (var toy in shopSO.toys)
+        foreach (var so in shopSO.toys)
         {
-            var btn = new Button();
+            var btn = new VisualElement();
             btn.AddToClassList("toy-button");
-            btn.Add(CreateButtonIcon(toy.texture));
+            btn.Add(CreateButtonIcon(so.texture));
             btn.RegisterCallback<MouseDownEvent>((ctx) =>
             {
-                activeToy = toy;
+                SetActiveToy(so);
+                UI.Hide(toys);
             });
             toyItems.Insert(0, btn);
             toyBtns.Insert(0, btn);
@@ -119,7 +122,7 @@ public class UIHome : MonoBehaviour, IScreen
 
             if (Input.GetMouseButtonUp(0))
             {
-                Debug.Log(activeToy);
+                // Debug.Log(activeToy);
             }
         }
     }
@@ -149,15 +152,42 @@ public class UIHome : MonoBehaviour, IScreen
         {
             var btn = foodBtns[i];
             var food = shopSO.food[i];
-            var qty = game.inventory.Qty(food);
+            var qty = game.inventory.QtyFood(food);
 
-            btn.style.display = qty == 0 ? DisplayStyle.None : DisplayStyle.Flex;
+            if (qty > 0)
+            {
+                btn.style.display = DisplayStyle.Flex;
+                btn.Q<Label>().text = qty.ToString();
+            }
+            else
+            {
+                btn.style.display = DisplayStyle.None;
+            }
         }
     }
 
     void UpdateActiveItem()
     {
+        if (activeFood != null || activeToy != null)
+        {
+            SetActiveItemPosition();
 
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (activeFood)
+                {
+                    game.home.Feed(activeFood);
+                }
+                else if (activeToy)
+                {
+                    game.home.Play(activeToy);
+                }
+
+                activeItem.style.display = DisplayStyle.None;
+                activeFood = null;
+                activeToy = null;
+            }
+        }
     }
 
     VisualElement CreateButtonIcon(Texture2D texture)
@@ -169,5 +199,36 @@ public class UIHome : MonoBehaviour, IScreen
         icon.style.backgroundImage = texture;
 
         return icon;
+    }
+
+    Label CreateButtonLabel()
+    {
+        var label = new Label();
+        label.AddToClassList("button-label");
+        label.pickingMode = PickingMode.Ignore;
+
+        return label;
+    }
+
+    void SetActiveItemPosition()
+    {
+        activeItem.style.left = Input.mousePosition.x;
+        activeItem.style.top = Screen.height - Input.mousePosition.y;
+    }
+
+    void SetActiveFood(FoodScriptableObject so)
+    {
+        activeFood = so;
+        SetActiveItemPosition();
+        activeItem.style.backgroundImage = so.texture;
+        activeItem.style.display = DisplayStyle.Flex;
+    }
+
+    void SetActiveToy(ToyScriptableObject so)
+    {
+        activeToy = so;
+        SetActiveItemPosition();
+        activeItem.style.backgroundImage = so.texture;
+        activeItem.style.display = DisplayStyle.Flex;
     }
 }

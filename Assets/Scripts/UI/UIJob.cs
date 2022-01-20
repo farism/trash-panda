@@ -91,7 +91,9 @@ public class UIJob : MonoBehaviour, IScreen
 
     void UpdateHeld()
     {
-        // held.text = game.job.player.heldRatio;
+        held.text = game.job.player.heldText;
+        held.style.left = Input.mousePosition.x;
+        held.style.top = Screen.height - Input.mousePosition.y;
     }
 
     void UpdateCooldown()

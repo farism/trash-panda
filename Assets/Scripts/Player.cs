@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public float walkingSpeed = 3;
     public float targetSpeed = 5;
     public float heldRatio { get => (float)held.Count / MaxHeldFromTool(tool); }
+    public string heldText { get => held.Count + "/" + MaxHeldFromTool(tool); }
 
     Vector3 mousePos;
     Vector3 walkTarget = Vector3.zero;

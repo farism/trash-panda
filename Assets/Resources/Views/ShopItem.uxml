@@ -8,15 +8,15 @@
             <ui:VisualElement name="_stats" picking-mode="Ignore" class="shop-item-stats">
                 <ui:VisualElement name="_stat" picking-mode="Ignore" class="shop-item-stat">
                     <ui:VisualElement name="_icon" picking-mode="Ignore" class="shop-item-stat-icon" style="background-image: url(&apos;project://database/Assets/Images/UI/battery-pack.png?fileID=2800000&amp;guid=0c1fb585da85bdf42b5b2d652d30fe01&amp;type=3#battery-pack&apos;);" />
-                    <ui:Label text="1" picking-mode="Ignore" class="shop-item-energy" />
-                </ui:VisualElement>
-                <ui:VisualElement name="_stat" picking-mode="Ignore" class="shop-item-stat">
-                    <ui:VisualElement name="_icon" picking-mode="Ignore" class="shop-item-stat-icon" style="background-image: url(&apos;project://database/Assets/Images/UI/hearts.png?fileID=2800000&amp;guid=69e6dc1501363b645816062aabd5b997&amp;type=3#hearts&apos;);" />
-                    <ui:Label text="1" picking-mode="Ignore" class="shop-item-love" />
+                    <ui:Label text="0" picking-mode="Ignore" class="shop-item-energy" />
                 </ui:VisualElement>
                 <ui:VisualElement name="_stat" picking-mode="Ignore" class="shop-item-stat">
                     <ui:VisualElement name="_icon" picking-mode="Ignore" class="shop-item-stat-icon" style="background-image: url(&apos;project://database/Assets/Images/UI/knife-fork.png?fileID=2800000&amp;guid=005d9555789ef22419499f9a1cda93e4&amp;type=3#knife-fork&apos;);" />
-                    <ui:Label text="1" picking-mode="Ignore" class="shop-item-hunger" />
+                    <ui:Label text="0" picking-mode="Ignore" class="shop-item-hunger" />
+                </ui:VisualElement>
+                <ui:VisualElement name="_stat" picking-mode="Ignore" class="shop-item-stat">
+                    <ui:VisualElement name="_icon" picking-mode="Ignore" class="shop-item-stat-icon" style="background-image: url(&apos;project://database/Assets/Images/UI/hearts.png?fileID=2800000&amp;guid=69e6dc1501363b645816062aabd5b997&amp;type=3#hearts&apos;);" />
+                    <ui:Label text="0" picking-mode="Ignore" class="shop-item-love" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

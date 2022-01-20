@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 
@@ -53,6 +54,8 @@ public class Game : MonoBehaviour
     }
 
     public float pollutionRatio { get => (float)pollution / (pollutionMax * 0.8f); }
+
+    public float sleepCooldown = 0;
 
     Vector3 mousePos;
     Vector3 rotation = Vector3.zero;
@@ -110,6 +113,8 @@ public class Game : MonoBehaviour
 
     void Awake()
     {
+        // Load();
+        StartCoroutine(Save());
         Cursor.SetCursor(cursor, new Vector2(10, 10), CursorMode.Auto);
     }
 
@@ -128,10 +133,8 @@ public class Game : MonoBehaviour
     void Update()
     {
         stats.Update(view);
-    }
 
-    void UpdateStats()
-    {
+        sleepCooldown = Mathf.Max(0, sleepCooldown - Time.deltaTime);
     }
 
     void SetActiveScreen(View v)
@@ -155,5 +158,25 @@ public class Game : MonoBehaviour
         {
             activeScreen = job;
         }
+    }
+
+    void Load()
+    {
+        var str = PlayerPrefs.GetString("inventory", "");
+
+        if (str != "")
+        {
+            inventory = JsonUtility.FromJson<Inventory>(str);
+        }
+    }
+
+    IEnumerator Save()
+    {
+        yield return new WaitForSeconds(5);
+
+        PlayerPrefs.SetString("inventory", JsonUtility.ToJson(inventory).ToString());
+        PlayerPrefs.Save();
+
+        StartCoroutine(Save());
     }
 }

@@ -94,7 +94,11 @@ public class UIShop : MonoBehaviour, IScreen
             ve.Q<Label>(className: "shop-item-energy").text = furniture.energy.ToString();
             ve.Q<Label>(className: "shop-item-name").text = furniture.type.ToString();
             ve.Q<Label>(className: "shop-item-purchase-price").text = furniture.price.ToString();
-            ve.Q<Button>(className: "shop-item-purchase").clicked += () => game.inventory.Purchase(furniture);
+            ve.Q<Button>(className: "shop-item-purchase").clicked += () =>
+            {
+                game.inventory.Purchase(furniture);
+                game.home.UpdateFurniture();
+            };
             furnitureItems.Add(ve);
         }
 

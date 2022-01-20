@@ -1,114 +1,340 @@
 using System.Collections.Generic;
 using System;
 
+[Serializable]
 public class Inventory
 {
-    public int currency { get; set; } = 100;
+    public int currency = 1000000;
 
-    public bool toolHand { get; private set; } = true;
+    public int foodCupcake = 10;
+    public int foodFries = 10;
+    public int foodHamburger = 10;
+    public int foodHotdog = 10;
+    public int foodJuice = 10;
+    public int foodMilk = 10;
+    public int foodMilkshake = 10;
+    public int foodPizza = 10;
+    public int foodSoda = 10;
+    public int foodSteak = 10;
+    public int foodTaco = 10;
+    public int foodWater = 10;
 
-    public int toolLeafblowerEnergy { get; private set; } = 0;
+    public bool toyChewtoy = true;
+    public bool toyCatTree = false;
+    public bool toyBeachball = false;
+    public bool toyLaserPointer = false;
 
-    public int toolBulldozerEnergy { get; private set; } = 0;
+    public bool furnitureSmallBed = true;
+    public bool furnitureBeanbag = false;
+    public bool furnitureFuton = false;
+    public bool furnitureBigBed = false;
 
-    public Dictionary<Food, int> food = new Dictionary<Food, int>();
+    public bool toolHand = true;
+    public bool toolSpike = false;
+    public bool toolGrabber = false;
+    public bool toolLeafBlower = false;
+    public bool toolBulldozer = false;
 
-    public Dictionary<Toy, bool> toys = new Dictionary<Toy, bool>();
-
-    public Dictionary<Furniture, bool> furniture = new Dictionary<Furniture, bool>();
-
-    public Dictionary<Tool, bool> tools = new Dictionary<Tool, bool>();
-
-    public Dictionary<Upgrade, bool> upgrades = new Dictionary<Upgrade, bool>();
+    public int toolLeafblowerEnergy = 100;
+    public int toolBulldozerEnergy = 100;
 
     public Inventory()
     {
-        food.Add(Food.Cupcake, 5);
-        food.Add(Food.Fries, 5);
-        food.Add(Food.Hamburger, 5);
-        food.Add(Food.Juice, 5);
-        food.Add(Food.Milk, 5);
-        food.Add(Food.Pizza, 5);
-        food.Add(Food.Taco, 5);
+        foodCupcake = 5;
+        foodFries = 5;
+        foodHamburger = 5;
+        foodJuice = 5;
+        foodMilk = 5;
+        foodPizza = 5;
+        foodTaco = 5;
     }
 
-    public int Qty(FoodScriptableObject so)
+    public int QtyFood(FoodScriptableObject so)
     {
-        return food.GetValueOrDefault(so.type, 0);
+        switch (so.type)
+        {
+            case Food.Cupcake:
+                return foodCupcake;
+            case Food.Fries:
+                return foodFries;
+            case Food.Hamburger:
+                return foodHamburger;
+            case Food.Hotdog:
+                return foodHotdog;
+            case Food.Juice:
+                return foodJuice;
+            case Food.Milk:
+                return foodMilk;
+            case Food.Milkshake:
+                return foodMilkshake;
+            case Food.Pizza:
+                return foodPizza;
+            case Food.Soda:
+                return foodSoda;
+            case Food.Steak:
+                return foodSteak;
+            case Food.Taco:
+                return foodTaco;
+            case Food.Water:
+                return foodWater;
+        }
+        return 0;
+    }
+
+    public void ConsumeFood(FoodScriptableObject so)
+    {
+        if (so.type == Food.Cupcake)
+        {
+            foodCupcake--;
+        }
+        else if (so.type == Food.Fries)
+        {
+            foodFries--;
+        }
+        else if (so.type == Food.Hamburger)
+        {
+            foodHamburger--;
+        }
+        else if (so.type == Food.Hotdog)
+        {
+            foodHotdog--;
+        }
+        else if (so.type == Food.Juice)
+        {
+            foodJuice--;
+        }
+        else if (so.type == Food.Milk)
+        {
+            foodMilk--;
+        }
+        else if (so.type == Food.Milkshake)
+        {
+            foodMilkshake--;
+        }
+        else if (so.type == Food.Pizza)
+        {
+            foodPizza--;
+        }
+        else if (so.type == Food.Soda)
+        {
+            foodSoda--;
+        }
+        else if (so.type == Food.Steak)
+        {
+            foodSteak--;
+        }
+        else if (so.type == Food.Taco)
+        {
+            foodTaco--;
+        }
+        else if (so.type == Food.Water)
+        {
+            foodWater--;
+        }
+    }
+
+    public bool HasToy(ToyScriptableObject so)
+    {
+        switch (so.type)
+        {
+            case Toy.Chewtoy:
+                return toyChewtoy;
+            case Toy.CatTree:
+                return toyCatTree;
+            case Toy.Beachball:
+                return toyBeachball;
+            case Toy.LaserPointer:
+                return toyLaserPointer;
+        }
+        return false;
+    }
+
+    public bool HasFurniture(FurnitureScriptableObject so)
+    {
+        switch (so.type)
+        {
+            case Furniture.SmallBed:
+                return furnitureSmallBed;
+            case Furniture.Beanbag:
+                return furnitureBeanbag;
+            case Furniture.Futon:
+                return furnitureFuton;
+            case Furniture.BigBed:
+                return furnitureBigBed;
+        }
+        return false;
+    }
+
+    public bool HasTool(ToolScriptableObject so)
+    {
+        switch (so.type)
+        {
+            case Tool.Hand:
+                return toolHand;
+            case Tool.Spike:
+                return toolSpike;
+            case Tool.Grabber:
+                return toolGrabber;
+            case Tool.LeafBlower:
+                return toolLeafBlower;
+            case Tool.Bulldozer:
+                return toolBulldozer;
+        }
+        return false;
+    }
+
+    public bool HasUpgrade(UpgradeScriptableObject so)
+    {
+        return false;
     }
 
     public void Purchase(FoodScriptableObject so)
     {
-        if (currency < so.price)
+        if (currency >= so.price)
         {
-            return;
-        }
+            currency -= so.price;
 
-        currency -= so.price;
-
-        Add(this.food, so.type);
-    }
-
-    public void Consume(FoodScriptableObject so)
-    {
-        if (food.GetValueOrDefault(so.type, 0) > 0)
-        {
-            Subtract(food, so.type);
+            if (so.type == Food.Cupcake)
+            {
+                foodCupcake++;
+            }
+            else if (so.type == Food.Cupcake)
+            {
+                foodCupcake++;
+            }
+            else if (so.type == Food.Fries)
+            {
+                foodFries++;
+            }
+            else if (so.type == Food.Hamburger)
+            {
+                foodHamburger++;
+            }
+            else if (so.type == Food.Hotdog)
+            {
+                foodHotdog++;
+            }
+            else if (so.type == Food.Hotdog)
+            {
+                foodHotdog++;
+            }
+            else if (so.type == Food.Juice)
+            {
+                foodJuice++;
+            }
+            else if (so.type == Food.Milk)
+            {
+                foodMilk++;
+            }
+            else if (so.type == Food.Milkshake)
+            {
+                foodMilkshake++;
+            }
+            else if (so.type == Food.Pizza)
+            {
+                foodPizza++;
+            }
+            else if (so.type == Food.Soda)
+            {
+                foodSoda++;
+            }
+            else if (so.type == Food.Steak)
+            {
+                foodSteak++;
+            }
+            else if (so.type == Food.Taco)
+            {
+                foodTaco++;
+            }
+            else if (so.type == Food.Water)
+            {
+                foodWater++;
+            }
         }
     }
 
     public void Purchase(ToyScriptableObject so)
     {
-        if (currency < so.price)
+        if (currency >= so.price)
         {
-            return;
-        }
+            currency -= so.price;
 
-        currency -= so.price;
+            if (so.type == Toy.Chewtoy)
+            {
+                toyChewtoy = true;
+            }
+            else if (so.type == Toy.CatTree)
+            {
+                toyCatTree = true;
+            }
+            else if (so.type == Toy.Beachball)
+            {
+                toyBeachball = true;
+            }
+            else if (so.type == Toy.LaserPointer)
+            {
+                toyLaserPointer = true;
+            }
+        }
     }
 
     public void Purchase(FurnitureScriptableObject so)
     {
-        if (currency < so.price)
+        if (currency >= so.price)
         {
-            return;
-        }
+            currency -= so.price;
 
-        currency -= so.price;
+            if (so.type == Furniture.SmallBed)
+            {
+                furnitureSmallBed = true;
+            }
+            else if (so.type == Furniture.Beanbag)
+            {
+                furnitureBeanbag = true;
+            }
+            else if (so.type == Furniture.Futon)
+            {
+                furnitureFuton = true;
+            }
+            else if (so.type == Furniture.BigBed)
+            {
+                furnitureBigBed = true;
+            }
+        }
     }
 
     public void Purchase(ToolScriptableObject so)
     {
-        if (currency < so.price)
+        if (currency > so.price)
         {
-            return;
+            currency -= so.price;
+
+            if (so.type == Tool.Spike)
+            {
+                toolSpike = true;
+            }
+            else if (so.type == Tool.Grabber)
+            {
+                toolGrabber = true;
+            }
+            else if (so.type == Tool.LeafBlower)
+            {
+                toolLeafBlower = true;
+            }
+            else if (so.type == Tool.Bulldozer)
+            {
+                toolBulldozer = true;
+            }
         }
 
-        currency -= so.price;
     }
 
     public void Purchase(UpgradeScriptableObject so)
     {
-        if (currency < so.price)
+        if (currency > so.price)
         {
-            return;
+            currency -= so.price;
         }
 
-        currency -= so.price;
-    }
-
-    void Add<T>(Dictionary<T, int> dic, T key) where T : Enum
-    {
-        var val = dic.GetValueOrDefault(key, 0);
-
-        dic[key] = val + 1;
-    }
-
-    void Subtract<T>(Dictionary<T, int> dic, T key) where T : Enum
-    {
-        if (dic.ContainsKey(key))
-        {
-            dic[key] += -1;
-        }
     }
 }
