@@ -21,6 +21,17 @@ public class Inventory
 
     public Dictionary<Upgrade, bool> upgrades = new Dictionary<Upgrade, bool>();
 
+    public Inventory()
+    {
+        food.Add(Food.Cupcake, 5);
+        food.Add(Food.Fries, 5);
+        food.Add(Food.Hamburger, 5);
+        food.Add(Food.Juice, 5);
+        food.Add(Food.Milk, 5);
+        food.Add(Food.Pizza, 5);
+        food.Add(Food.Taco, 5);
+    }
+
     public int Qty(FoodScriptableObject so)
     {
         return food.GetValueOrDefault(so.type, 0);
@@ -44,6 +55,46 @@ public class Inventory
         {
             Subtract(food, so.type);
         }
+    }
+
+    public void Purchase(ToyScriptableObject so)
+    {
+        if (currency < so.price)
+        {
+            return;
+        }
+
+        currency -= so.price;
+    }
+
+    public void Purchase(FurnitureScriptableObject so)
+    {
+        if (currency < so.price)
+        {
+            return;
+        }
+
+        currency -= so.price;
+    }
+
+    public void Purchase(ToolScriptableObject so)
+    {
+        if (currency < so.price)
+        {
+            return;
+        }
+
+        currency -= so.price;
+    }
+
+    public void Purchase(UpgradeScriptableObject so)
+    {
+        if (currency < so.price)
+        {
+            return;
+        }
+
+        currency -= so.price;
     }
 
     void Add<T>(Dictionary<T, int> dic, T key) where T : Enum

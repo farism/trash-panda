@@ -4,8 +4,10 @@ using UnityEngine.UIElements;
 public class UIControls : MonoBehaviour
 {
     public Game game;
-    public Texture2D soundOn;
-    public Texture2D soundOff;
+    public Texture2D musicOn;
+    public Texture2D musicOff;
+    public Texture2D effectsOn;
+    public Texture2D effectsOff;
 
     VisualElement root;
     Button jamlink;
@@ -42,14 +44,14 @@ public class UIControls : MonoBehaviour
         soundMusicBtn.clicked += () =>
         {
             game.ToggleSoundMusic();
-            soundMusicBtn.style.backgroundImage = game.soundMusic ? soundOn : soundOff;
+            soundMusicBtn.style.backgroundImage = game.soundMusic ? musicOn : musicOff;
         };
 
         soundEffectsBtn = root.Q<Button>("SoundEffectsBtn");
         soundEffectsBtn.clicked += () =>
         {
             game.ToggleSoundEffects();
-            soundEffectsBtn.style.backgroundImage = game.soundEffects ? soundOn : soundOff;
+            soundEffectsBtn.style.backgroundImage = game.soundEffects ? effectsOn : effectsOff;
         };
 
         infoBtn = root.Q<Button>("InfoBtn");

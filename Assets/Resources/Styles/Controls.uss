@@ -6,30 +6,19 @@
 }
 
 #Controls .control-button {
-  -unity-background-image-tint-color: rgb(0, 0, 0);
-  background-color: white;
-  border-bottom-color: black;
-  border-bottom-width: 4px;
-  border-radius: 0;
-  border-right-color: black;
-  border-right-width: 4px;
-  color: black;
+  border-radius: 8px;
   height: 64px;
   margin-left: 16px;
   width: 64px;
 }
 
 #Controls .control-button:hover {
-  background-color: white;
   scale: 1.1;
 }
 
 #Controls .control-button:active {
-  background-color: white;
-  border-bottom-width: 2px;
-  border-right-width: 2px;
-  top: 2px;
-  left: 2px;
+  top: 1px;
+  left: 1px;
 }
 
 #Options {

@@ -6,16 +6,19 @@ using DG.Tweening;
 public class Job : MonoBehaviour, IScreen
 {
     public Game game;
+    public Location location;
     public GameObject ground;
     public GameObject groundCity;
     public GameObject groundDesert;
     public GameObject groundMeadow;
+    public GameObject trashContainer;
     public Collider borderLeft;
     public Collider borderRight;
     public Collider borderTop;
     public Collider borderBottom;
     public GameObject redcup;
     public Player player;
+    public float groundSpeed = 1;
     public float spawnRateMin = 0;
     public float spawnRateMax = 1;
     public float cooldown = 5;
@@ -23,7 +26,6 @@ public class Job : MonoBehaviour, IScreen
     public float cooldownRatio { get => cooldownTimer / 5; }
     public List<Trash> trashPile = new List<Trash>();
 
-    Location location;
     Renderer groundRenderer;
     Material activeMaterial;
     Vector3 origin = Vector3.zero;
@@ -33,11 +35,15 @@ public class Job : MonoBehaviour, IScreen
         transform.position = Vector3.zero;
         transform.localScale = Vector3.one;
         gameObject.SetActive(true);
+        StartCoroutine(SpawnTimer());
     }
 
     public void Hide()
     {
+        StopAllCoroutines();
+        DestroyTrashBelowThreshold(-10);
         transform.DOKill();
+        gameObject.SetActive(false);
         transform.position = origin;
         transform.localScale = Vector3.zero;
     }
@@ -63,9 +69,13 @@ public class Job : MonoBehaviour, IScreen
         }
     }
 
-    public void DestroyTrash(Trash trash)
+    public void DestroyTrash(GameObject gameObject)
     {
+        var trash = gameObject.GetComponent<Trash>();
 
+        trashPile.Remove(trash);
+
+        GameObject.Destroy(gameObject, 0.1f);
     }
 
     void Awake()
@@ -77,7 +87,6 @@ public class Job : MonoBehaviour, IScreen
 
     void Start()
     {
-        StartCoroutine(SpawnTimer());
     }
 
     void Update()
@@ -95,6 +104,8 @@ public class Job : MonoBehaviour, IScreen
         if (game.view == View.Job)
         {
             UpdateTrashPositions();
+
+            DestroyTrashBelowThreshold();
         }
     }
 
@@ -108,7 +119,7 @@ public class Job : MonoBehaviour, IScreen
         if (activeMaterial)
         {
             var offset = activeMaterial.mainTextureOffset;
-            offset.y += Time.deltaTime / 10;
+            offset.y += (Time.deltaTime / 10) * groundSpeed; // 10 is height in units of quad
             activeMaterial.mainTextureOffset = offset;
         }
     }
@@ -118,20 +129,30 @@ public class Job : MonoBehaviour, IScreen
         foreach (var trash in trashPile)
         {
             var pos = trash.rb.position;
-            pos.y -= Time.deltaTime;
+            pos.y -= Time.deltaTime * groundSpeed;
             trash.rb.position = pos;
         }
+    }
+
+    void DestroyTrashBelowThreshold(float threshold = 1)
+    {
+        trashPile.RemoveAll((t) =>
+        {
+            var shouldRemove = t.transform.position.z > threshold; // we have dropped below the ground plane
+
+            if (shouldRemove)
+            {
+                GameObject.Destroy(t.gameObject, 0.5f);
+            }
+
+            return shouldRemove;
+        });
     }
 
     IEnumerator SpawnTimer()
     {
         yield return new WaitForSeconds(Random.Range(spawnRateMin, spawnRateMax));
-
-        if (game.view == View.Job)
-        {
-            Spawn();
-        }
-
+        Spawn();
         StartCoroutine(SpawnTimer());
     }
 
@@ -156,13 +177,14 @@ public class Job : MonoBehaviour, IScreen
         for (var i = 0; i < count; i++)
         {
             var go = Instantiate(redcup);
+            go.transform.parent = trashContainer.transform;
 
             var collider = go.GetComponent<Collider>();
             Physics.IgnoreCollision(collider, borderTop);
             Physics.IgnoreCollision(collider, borderBottom);
 
             var t = go.GetComponent<Trash>();
-            t.transform.position = new Vector3(Random.Range(-3, 3), 10, -2);
+            t.transform.localPosition = new Vector3(Random.Range(-3, 3), 0, 0);
             t.transform.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
 
             trashPile.Add(t);

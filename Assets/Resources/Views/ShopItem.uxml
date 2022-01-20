@@ -21,7 +21,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:Button name="Purchase" class="shop-item-purchase yellow-button">
-            <ui:VisualElement name="_coin" picking-mode="Ignore" class="shop-item-purchase-icon" style="background-image: url(&apos;project://database/Assets/Images/UI/two-coins.png?fileID=2800000&amp;guid=32f3a9351e6d1e445b8ffef640233a86&amp;type=3#two-coins&apos;);" />
+            <ui:VisualElement name="_coin" picking-mode="Ignore" class="shop-item-purchase-icon" style="background-image: url(&apos;project://database/Assets/Images/UI/coin.png?fileID=2800000&amp;guid=a06fc8d60ac3f0f47893f101e48ab001&amp;type=3#coin&apos;);" />
             <ui:Label text="12345" name="Price" picking-mode="Ignore" class="shop-item-purchase-price" />
         </ui:Button>
     </ui:VisualElement>

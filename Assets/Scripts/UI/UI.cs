@@ -1,16 +1,13 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 public class UI : MonoBehaviour
 {
     public Game game;
+    public Texture2D defaultCursor;
+    public Texture2D handCursor;
     public AudioClip hoverSound;
     public AudioClip clickSound;
-    public Texture2D soundOn;
-    public Texture2D soundOff;
     public VisualElement tooltip;
 
     VisualElement root;

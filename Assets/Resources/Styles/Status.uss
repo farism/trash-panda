@@ -16,6 +16,7 @@
 }
 
 .status-icon {
+  -unity-background-scale-mode: scale-to-fit;
   flex: 0 0 auto;
   height: 32px;
   width: 32px;

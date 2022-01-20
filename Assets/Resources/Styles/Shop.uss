@@ -129,6 +129,7 @@
 
 .shop-item-stat-icon {
   -unity-background-image-tint-color: rgba(62, 42, 20, 1);
+  -unity-background-scale-mode: scale-to-fit;
   color: rgba(62, 42, 20, 1);
   flex: 0 0 auto;
   height: 24px;
@@ -154,7 +155,6 @@
 
 .shop-item-purchase-icon {
   -unity-background-image-tint-color: rgb(62, 42, 20);
-  -unity-background-scale-mode: scale-and-crop;
   flex: 0 0 auto;
   height: 32px;
   margin: 0 8px;

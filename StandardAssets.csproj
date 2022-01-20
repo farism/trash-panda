@@ -38,7 +38,6 @@
   <ItemGroup>
      <Compile Include="Assets\Plugins\QuickOutline\Scripts\Outline.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGTriangulator2D.cs" />
-     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_LineButtonsContent.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestDirector.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGCurveReferenceToPoint.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGCurveFormulaMath.cs" />
@@ -63,7 +62,6 @@
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestCurveShowcase.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcSweep2D.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestCamera.cs" />
-     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_DataDiagram.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestCurveStatic.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGCurveCalculatorClosestPoint.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGCurvePointField.cs" />
@@ -80,30 +78,44 @@
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestCurveRuntime.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGCurveChangedArgs.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGPpu.cs" />
-     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_DragBar.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcCursor.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcCursorObjectScale.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcTriangulate2D.cs" />
-     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_DrawGraphic.cs" />
-     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_Lines.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Curve\BGCurveFormulas.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcCursorChangeLinear.cs" />
-     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_ZoomButton.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Scripts\Cc\BGCcWithCursorObject.cs" />
      <Compile Include="Assets\Plugins\BansheeGz\BGCurve\Examples\Scripts\BGTestCcChangeCursorLinear.cs" />
-     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_CoordinateAxis.cs" />
-     <Compile Include="Assets\Plugins\DataDiagram\Example\Sample.cs" />
-     <Compile Include="Assets\Plugins\DataDiagram\Script\DD_LineButton.cs" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMPro.cginc" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\Plugins\SpriteOutline\Shaders\SpriteOutline.shader" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\Plugins\QuickOutline\Resources\Shaders\OutlineMask.shader" />
      <None Include="Assets\Plugins\StandardAssets.asmdef" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+     <None Include="Assets\Plugins\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF.shader" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+     <None Include="Assets\Plugins\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\Plugins\BansheeGz\BGCurve\readme.txt" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\Plugins\QuickOutline\Readme.txt" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+     <None Include="Assets\Plugins\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\Plugins\Demigiant\DOTween\readme.txt" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\Plugins\QuickOutline\Resources\Shaders\OutlineFill.shader" />
+     <None Include="Assets\Plugins\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
      <None Include="Assets\Plugins\FlexibleCelShader\Shaders\CelNoOutline.shader" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\Plugins\FlexibleCelShader\Shaders\CelSilhouette.shader" />
      <None Include="Assets\Plugins\FlexibleCelShader\Shaders\CelOutline.shader" />
+     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.7f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

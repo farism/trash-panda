@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
     public Game game;
     public Tool tool = Tool.Hand;
-    public GameObject target;
-    public GameObject walkingBody;
+    public SpriteRenderer target;
+    public GameObject walking;
     public Rigidbody bulldozerBody;
     public Collider bulldozerBodyCollider;
     public Renderer bulldozerBodyRenderer;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     public float bulldozerForceMultiplier = 1;
     public float walkingSpeed = 3;
     public float targetSpeed = 5;
+    public float heldRatio { get => (float)held.Count / MaxHeldFromTool(tool); }
 
     Vector3 mousePos;
     Vector3 walkTarget = Vector3.zero;
@@ -93,7 +95,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            walkTarget = new Vector3(mousePos.x, mousePos.y, walkingBody.transform.position.z);
+            walkTarget = new Vector3(mousePos.x, mousePos.y, walking.transform.position.z);
         }
     }
 
@@ -111,34 +113,32 @@ public class Player : MonoBehaviour
 
     void UpdateWalkingPosition()
     {
-        Vector3 direction = mousePos - walkingBody.transform.position;
+        Vector3 direction = mousePos - walking.transform.position;
         float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-        walkingBody.transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
+        walking.transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
 
         if (walkTarget != Vector3.zero)
         {
-            walkingBody.transform.position = Vector3.MoveTowards(walkingBody.transform.position, walkTarget, Time.deltaTime * walkingSpeed);
+            walking.transform.position = Vector3.MoveTowards(walking.transform.position, walkTarget, Time.deltaTime * walkingSpeed);
 
-            if (Vector2.Distance(walkingBody.transform.position, walkTarget) < 0.25f)
+            if (Vector2.Distance(walking.transform.position, walkTarget) < 0.25f)
             {
                 walkTarget = Vector3.zero;
 
-                var toRemove = new List<Trash>();
-
-                foreach (var trash in game.job.trashPile)
+                var inRange = game.job.trashPile.FindAll((t) =>
                 {
-                    if (Vector2.Distance(trash.transform.position, walkingBody.transform.position) < 1f)
+                    return Vector2.Distance(t.transform.position, walking.transform.position) < 1f;
+                });
+
+                foreach (var trash in inRange)
+                {
+                    if (heldRatio < 1)
                     {
-                        toRemove.Add(trash);
+                        held.Add(trash);
                     }
                 }
 
-                foreach (var trash in toRemove)
-                {
-                    game.job.trashPile.Remove(trash);
-
-                    Object.Destroy(trash.gameObject, 0.1f);
-                }
+                target.DOColor(heldRatio == 1 ? Color.green : Color.white, 0.3f);
             }
         }
     }
@@ -157,6 +157,21 @@ public class Player : MonoBehaviour
             var force = new Vector3(direction.x, direction.y, 0).normalized;
 
             bulldozerBody.AddForce(force * bulldozerForceMultiplier);
+        }
+    }
+
+    int MaxHeldFromTool(Tool tool)
+    {
+        switch (tool)
+        {
+            case Tool.Hand:
+                return 2;
+            case Tool.Spike:
+                return 5;
+            case Tool.Grabber:
+                return 5;
+            default:
+                return 0;
         }
     }
 

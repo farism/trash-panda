@@ -52,7 +52,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    public float pollutionRatio { get => (float)pollution / (float)pollutionMax; }
+    public float pollutionRatio { get => (float)pollution / (pollutionMax * 0.8f); }
 
     Vector3 mousePos;
     Vector3 rotation = Vector3.zero;
@@ -122,7 +122,7 @@ public class Game : MonoBehaviour
         SetActiveScreen(view);
         activeScreen.Show();
         ui.ShowView(view);
-        StartJob(0);
+        // StartJob(0);
     }
 
     void Update()

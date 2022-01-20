@@ -6,6 +6,7 @@ public class UIHome : MonoBehaviour, IScreen
 {
     public Game game;
     public ShopScriptableObject shopSO;
+    public bool isMouseOverUI = false;
 
     VisualElement root;
     VisualElement home;
@@ -44,8 +45,7 @@ public class UIHome : MonoBehaviour, IScreen
         {
             var btn = new Button();
             btn.AddToClassList("food-button");
-            btn.style.backgroundImage = food.texture;
-            btn.style.unityBackgroundScaleMode = ScaleMode.ScaleToFit;
+            btn.Add(CreateButtonIcon(food.texture));
             btn.RegisterCallback<MouseDownEvent>((ctx) =>
             {
                 activeFood = food;
@@ -60,8 +60,7 @@ public class UIHome : MonoBehaviour, IScreen
         {
             var btn = new Button();
             btn.AddToClassList("toy-button");
-            btn.style.backgroundImage = toy.texture;
-            btn.style.unityBackgroundScaleMode = ScaleMode.ScaleToFit;
+            btn.Add(CreateButtonIcon(toy.texture));
             btn.RegisterCallback<MouseDownEvent>((ctx) =>
             {
                 activeToy = toy;
@@ -83,6 +82,19 @@ public class UIHome : MonoBehaviour, IScreen
             UI.Hide(food);
             UI.Toggle(toys);
         };
+
+        foreach (var btn in home.Query<Button>().ToList())
+        {
+            btn.RegisterCallback<MouseEnterEvent>((ctx) =>
+            {
+                isMouseOverUI = true;
+                foreach (var outliner in FindObjectsOfType<SpriteOutliner>())
+                {
+                    outliner.Hide();
+                }
+            });
+            btn.RegisterCallback<MouseLeaveEvent>((ctx) => isMouseOverUI = false);
+        }
 
         UI.Hide(food);
         UI.Hide(toys);
@@ -146,5 +158,16 @@ public class UIHome : MonoBehaviour, IScreen
     void UpdateActiveItem()
     {
 
+    }
+
+    VisualElement CreateButtonIcon(Texture2D texture)
+    {
+        var icon = new VisualElement();
+        icon.AddToClassList("frame");
+        icon.AddToClassList("button-icon");
+        icon.pickingMode = PickingMode.Ignore;
+        icon.style.backgroundImage = texture;
+
+        return icon;
     }
 }

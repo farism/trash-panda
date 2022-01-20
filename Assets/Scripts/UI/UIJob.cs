@@ -7,12 +7,13 @@ public class UIJob : MonoBehaviour, IScreen
     public Game game;
     VisualElement root;
     VisualElement job;
-    List<VisualElement> cooldowns;
+    Label held;
     Button skill0;
     Button skill1;
     Button skill2;
     Button skill3;
     Button skill4;
+    List<VisualElement> cooldowns;
 
     public void Show()
     {
@@ -29,6 +30,8 @@ public class UIJob : MonoBehaviour, IScreen
         root = GetComponent<UIDocument>().rootVisualElement;
 
         job = root.Q<VisualElement>("Job");
+
+        held = job.Q<Label>("Held");
 
         skill0 = job.Q<Button>("Skill0");
         skill0.clicked += () => game.job.ActivateTool(Tool.Hand);
@@ -56,6 +59,8 @@ public class UIJob : MonoBehaviour, IScreen
         {
             UpdateActiveTool();
 
+            UpdateHeld();
+
             UpdateCooldown();
         }
     }
@@ -82,6 +87,11 @@ public class UIJob : MonoBehaviour, IScreen
         {
             game.job.ActivateTool(Tool.Bulldozer);
         }
+    }
+
+    void UpdateHeld()
+    {
+        // held.text = game.job.player.heldRatio;
     }
 
     void UpdateCooldown()

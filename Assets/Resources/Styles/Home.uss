@@ -14,12 +14,7 @@
 }
 
 #Home Button {
-  background-color: white;
-  border-bottom-color: black;
-  border-bottom-width: 4px;
-  border-radius: 0;
-  border-right-color: black;
-  border-right-width: 4px;
+  border-radius: 8px;
   height: 64px;
   width: 64px;
 }
@@ -29,11 +24,68 @@
 }
 
 #Home Button:active {
+  left: 1px;
+  top: 1px;
+}
+
+#FoodBtn,
+#ToysBtn {
+  border-width: 3px;
+}
+
+#Home .unity-scroller {
+  position: absolute;
+  top: 1000px;
+}
+
+#Home .button-icon {
+  -unity-background-scale-mode: scale-to-fit;
+  bottom: 0;
+  left: 0;
+  margin: 8px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#Home .food-button,
+#Home .toy-button {
   background-color: white;
-  border-bottom-width: 2px;
-  border-right-width: 2px;
-  left: 2px;
-  top: 2px;
+  height: 72px;
+  width: 72px;
+}
+
+#Home .food-button {
+  margin-left: 8px;
+}
+
+#Home .toy-button {
+  margin-bottom: 8px;
+}
+
+#Home #Food {
+  height: 100px;
+}
+
+#Home #Food #Items {
+  height: 100%;
+}
+
+#Home #Food #unity-content-container {
+  align-items: center;
+  padding-right: 8px;
+  height: 100%;
+}
+
+#Home #Toys {
+  left: -18px;
+  width: 100px;
+}
+
+#Home #Toys #unity-content-container {
+  align-items: center;
+  padding-top: 8px;
+  width: 100%;
 }
 
 #FoodContainer {
@@ -42,28 +94,10 @@
   flex-direction: row;
   height: 100px;
   left: 96px;
+  right: 128px;
   position: absolute;
   right: 0;
   transition: 0.2s opacity;
-}
-
-#FoodContainer #Food Button {
-  height: 72px;
-  margin-left: 8px;
-  width: 72px;
-}
-
-#FoodContainer #Food {
-  height: 100px;
-}
-
-#FoodContainer #Food #Items {
-  height: 100%;
-}
-
-#FoodContainer #Food #unity-content-container {
-  align-items: center;
-  height: 100%;
 }
 
 #ToysContainer {
@@ -71,20 +105,4 @@
   left: 460px;
   position: absolute;
   transition: 0.2s opacity;
-}
-
-#ToysContainer #Toys Button {
-  height: 72px;
-  margin-bottom: 8;
-  width: 72px;
-}
-
-#ToysContainer #Toys {
-  left: -18px;
-  width: 100px;
-}
-
-#ToysContainer #Toys #unity-content-container {
-  align-items: center;
-  width: 100%;
 }

@@ -67,26 +67,34 @@
   top: 0;
 }
 
-.background-frame {
+VisualElement.background-frame,
+Button.background-frame,
+Label.background-frame {
   background-color: rgba(10, 10, 10, 0.4);
   border-radius: 32px;
 }
 
-.inner-frame {
+VisualElement.inner-frame,
+Button.inner-frame,
+Label.inner-frame {
   background-color: rgba(244, 244, 244, 0.5);
   border-color: rgba(62, 42, 20, 1);
   border-radius: 48px;
   border-width: 4px;
 }
 
-.item-frame {
+VisualElement.item-frame,
+Button.item-frame,
+Label.item-frame {
   background-color: rgba(244, 244, 244, 1);
   border-color: rgba(62, 42, 20, 1);
   border-radius: 42px;
   border-width: 4px;
 }
 
-#Wrapper .yellow-button {
+VisualElement.yellow-button,
+Button.yellow-button,
+Label.yellow-button {
   color: white;
   background-color: #f1c413;
   background-image: url("project://database/Assets/Images/UI/button-dots.png");
@@ -96,6 +104,6 @@
   height: 64px;
 }
 
-#Wrapper .yellow-button:hover {
+.yellow-button:hover {
   background-color: #f7d54c;
 }

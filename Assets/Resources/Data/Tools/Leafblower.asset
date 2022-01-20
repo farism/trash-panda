@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Leafblower
   m_EditorClassIdentifier: 
   type: 3
-  texture: {fileID: 2800000, guid: 9a257e3f26d25d541803cdb38df076cc, type: 3}
+  texture: {fileID: 2800000, guid: 91edd807a92dc1a4e927e37ad9ca80fb, type: 3}
   price: 0
+  energy: 0
+  hunger: 0
+  love: 0

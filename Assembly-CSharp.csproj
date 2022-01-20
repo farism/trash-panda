@@ -43,7 +43,7 @@
      <Compile Include="Assets\Scripts\ScriptableObjects\FurnitureScriptableObject.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\ToolScriptableObject.cs" />
      <Compile Include="Assets\Scripts\SpriteOutliner.cs" />
-     <Compile Include="Assets\Scripts\Boundary.cs" />
+     <Compile Include="Assets\Scripts\DisposalArea.cs" />
      <Compile Include="Assets\Scripts\Location.cs" />
      <Compile Include="Assets\Scripts\Trash.cs" />
      <Compile Include="Assets\Scripts\Utils.cs" />
@@ -879,14 +879,6 @@
     <ProjectReference Include="BGCurveEditor.csproj">
       <Project>{07a28f9e-abde-fb79-8def-e6081cf9064c}</Project>
       <Name>BGCurveEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="OEBIF.csproj">
-      <Project>{8dfa9ba8-a7ff-7caf-23c1-9a20c54400f4}</Project>
-      <Name>OEBIF</Name>
-    </ProjectReference>
-    <ProjectReference Include="DataDiagramEditor.csproj">
-      <Project>{ab5b7618-010d-e3ea-1182-3249c7a4c5d2}</Project>
-      <Name>DataDiagramEditor</Name>
     </ProjectReference>
     <ProjectReference Include="StandardAssets.csproj">
       <Project>{238490ff-9802-ac27-69ea-bc55c42cb93c}</Project>

@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Grabber
   m_EditorClassIdentifier: 
   type: 1
-  texture: {fileID: 2800000, guid: 28f929d60673efd4b9e89df879f14891, type: 3}
+  texture: {fileID: 2800000, guid: d0c968e8553aea647b64a6cb95277977, type: 3}
   price: 0
+  energy: 0
+  hunger: 0
+  love: 0

@@ -11,10 +11,12 @@
     <Style src="project://database/Assets/Resources/Styles/Unity.uss?fileID=7433441132597879392&amp;guid=6a26d77f4dc0c2044a81c462682b8060&amp;type=3#Unity" />
     <Style src="project://database/Assets/Resources/Styles/Job.uss?fileID=7433441132597879392&amp;guid=c4fb38b56853f234496575486ba2e6be&amp;type=3#Job" />
     <Style src="project://database/Assets/Resources/Styles/Counter.uss?fileID=7433441132597879392&amp;guid=fb9115bf87b43d54a822ce658fdd939c&amp;type=3#Counter" />
-    <ui:VisualElement name="Wrapper" class="frame">
+    <ui:VisualElement name="Wrapper" picking-mode="Ignore" class="frame">
         <ui:VisualElement name="Home" class="frame" style="display: none;">
-            <ui:VisualElement name="FoodContainer">
-                <ui:Button name="FoodBtn" class="home-tab-button" style="background-image: url(&apos;project://database/Assets/Images/UI/hamburger.png?fileID=2800000&amp;guid=ef0a7a4ba2b0b1c47a9683529d86897b&amp;type=3#hamburger&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(0, 0, 0);" />
+            <ui:VisualElement name="FoodContainer" picking-mode="Ignore">
+                <ui:Button name="FoodBtn" class="item-frame">
+                    <ui:VisualElement name="_icon" picking-mode="Ignore" class="button-icon frame" style="background-image: url(&apos;project://database/Assets/Images/Items/Food/pizza.png?fileID=2800000&amp;guid=4538515071131aa459900e98ef695bfa&amp;type=3#pizza&apos;);" />
+                </ui:Button>
                 <ui:VisualElement name="Food">
                     <ui:ScrollView name="Items" mode="Horizontal" class="shop-pane-items" />
                 </ui:VisualElement>
@@ -23,7 +25,9 @@
                 <ui:VisualElement name="Toys">
                     <ui:ScrollView name="Items" class="shop-pane-items" />
                 </ui:VisualElement>
-                <ui:Button name="ToysBtn" class="home-tab-button" style="background-image: url(&apos;project://database/Assets/Images/UI/beach-ball.png?fileID=2800000&amp;guid=f41ef9fea10f534418cf4381ca64663d&amp;type=3#beach-ball&apos;); -unity-background-image-tint-color: rgb(0, 0, 0);" />
+                <ui:Button name="ToysBtn" class="item-frame">
+                    <ui:VisualElement name="_icon" picking-mode="Ignore" class="button-icon frame" style="background-image: url(&apos;project://database/Assets/Images/Items/Toys/beachball.png?fileID=2800000&amp;guid=34934e506b703a142a0a5a1eb9ae4a6c&amp;type=3#beachball&apos;);" />
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Shop" class="frame background-frame" style="display: none; background-color: rgba(0, 0, 0, 0.24);">
@@ -71,27 +75,34 @@
         </ui:VisualElement>
         <ui:VisualElement name="Job" class="frame" style="display: flex;">
             <ui:VisualElement name="Skills">
-                <ui:Button display-tooltip-when-elided="false" name="Skill0" focusable="false" class="skill-button">
+                <ui:Button display-tooltip-when-elided="false" name="Skill0" focusable="false" class="skill-button" style="background-image: url(&apos;project://database/Assets/Images/Items/Tools/hand.png?fileID=2800000&amp;guid=ba97068b1595ae54188f369fe92ae3a6&amp;type=3#hand&apos;);">
                     <ui:VisualElement name="_cooldown" class="skill-cooldown" />
-                    <ui:Label text="1" display-tooltip-when-elided="true" name="_number" class="yellow-button" />
+                    <ui:Label text="1" display-tooltip-when-elided="true" name="_number" picking-mode="Ignore" class="yellow-button" />
                 </ui:Button>
                 <ui:Button display-tooltip-when-elided="false" name="Skill1" focusable="false" class="skill-button" style="background-image: url(&apos;project://database/Assets/Images/Items/Tools/spike.png?fileID=2800000&amp;guid=43975428fcb30334b85907bba1afe3a9&amp;type=3#spike&apos;);">
                     <ui:VisualElement name="_cooldown" class="skill-cooldown" />
-                    <ui:Label text="2" display-tooltip-when-elided="true" name="_number" class="yellow-button" />
+                    <ui:Label text="2" display-tooltip-when-elided="true" name="_number" picking-mode="Ignore" class="yellow-button" />
                 </ui:Button>
-                <ui:Button display-tooltip-when-elided="false" name="Skill2" focusable="false" class="skill-button" style="background-image: url(&apos;project://database/Assets/Images/Items/Tools/grabber.jpg?fileID=2800000&amp;guid=28f929d60673efd4b9e89df879f14891&amp;type=3#grabber&apos;);">
+                <ui:Button display-tooltip-when-elided="false" name="Skill2" focusable="false" class="skill-button" style="background-image: url(&apos;project://database/Assets/Images/Items/Tools/grabber.png?fileID=2800000&amp;guid=d0c968e8553aea647b64a6cb95277977&amp;type=3#grabber&apos;);">
                     <ui:VisualElement name="_cooldown" class="skill-cooldown" />
-                    <ui:Label text="3" display-tooltip-when-elided="true" name="_number" class="yellow-button" />
+                    <ui:Label text="3" display-tooltip-when-elided="true" name="_number" picking-mode="Ignore" class="yellow-button" />
                 </ui:Button>
-                <ui:Button display-tooltip-when-elided="false" name="Skill3" focusable="false" class="skill-button" style="background-image: url(&apos;project://database/Assets/Images/Items/Tools/leafblower.jpg?fileID=2800000&amp;guid=9a257e3f26d25d541803cdb38df076cc&amp;type=3#leafblower&apos;);">
+                <ui:Button display-tooltip-when-elided="false" name="Skill3" focusable="false" class="skill-button" style="background-image: url(&apos;project://database/Assets/Images/Items/Tools/leafblower.png?fileID=2800000&amp;guid=91edd807a92dc1a4e927e37ad9ca80fb&amp;type=3#leafblower&apos;);">
                     <ui:VisualElement name="_cooldown" class="skill-cooldown" />
-                    <ui:Label text="4" display-tooltip-when-elided="true" name="_number" class="yellow-button" />
+                    <ui:Label text="4" display-tooltip-when-elided="true" name="_number" picking-mode="Ignore" class="yellow-button" />
+                    <ui:VisualElement name="_fuel" tooltip="Leafblower Fuel" class="fuel">
+                        <ui:VisualElement name="Skill3Fuel" class="fuel-fill" />
+                    </ui:VisualElement>
                 </ui:Button>
                 <ui:Button display-tooltip-when-elided="false" name="Skill4" focusable="false" class="skill-button" style="background-image: url(&apos;project://database/Assets/Images/Items/Tools/bulldozer.png?fileID=2800000&amp;guid=f884694b30edf4c41a7ae407d9e14b85&amp;type=3#bulldozer&apos;);">
                     <ui:VisualElement name="_cooldown" class="skill-cooldown" />
-                    <ui:Label text="5" display-tooltip-when-elided="true" name="_number" class="yellow-button" />
+                    <ui:Label text="5" display-tooltip-when-elided="true" name="_number" picking-mode="Ignore" class="yellow-button" />
+                    <ui:VisualElement name="_fuel" tooltip="Bulldozer Fuel" class="fuel">
+                        <ui:VisualElement name="Skill4Fuel" class="fuel-fill" />
+                    </ui:VisualElement>
                 </ui:Button>
             </ui:VisualElement>
+            <ui:Label text="0 / 2" display-tooltip-when-elided="true" name="Held" class="item-frame" />
         </ui:VisualElement>
         <ui:VisualElement name="Top">
             <ui:VisualElement name="PollutionContainer">
@@ -100,19 +111,19 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Currency" class="item-frame">
-                <ui:VisualElement name="CurrencyIcon" style="background-image: url(&apos;project://database/Assets/Images/UI/two-coins.png?fileID=2800000&amp;guid=32f3a9351e6d1e445b8ffef640233a86&amp;type=3#two-coins&apos;);" />
+                <ui:VisualElement name="CurrencyIcon" style="background-image: url(&apos;project://database/Assets/Images/UI/coin.png?fileID=2800000&amp;guid=a06fc8d60ac3f0f47893f101e48ab001&amp;type=3#coin&apos;);" />
                 <ui:Label text="1,000,000" name="CurrencyText" />
             </ui:VisualElement>
             <ui:VisualElement name="Controls">
-                <ui:Button name="HomeBtn" focusable="false" text="Home" tooltip="Home" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/house.png?fileID=2800000&amp;guid=35addc19ad37218428eec9ac5b2fc373&amp;type=3#house&apos;);" />
-                <ui:Button name="ShopBtn" focusable="false" tooltip="Shop" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/price-tag.png?fileID=2800000&amp;guid=872a8d02feb06a7428f1b183fe5d5848&amp;type=3#price-tag&apos;);" />
-                <ui:Button name="JobsBtn" focusable="false" tooltip="Jobs" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/earth-america.png?fileID=2800000&amp;guid=353c98c3af571a44e85a2bd96e6896fe&amp;type=3#earth-america&apos;);" />
+                <ui:Button name="HomeBtn" focusable="false" tooltip="Home" class="control-button yellow-button" style="background-image: url(&apos;project://database/Assets/Images/UI/house.png?fileID=2800000&amp;guid=35addc19ad37218428eec9ac5b2fc373&amp;type=3#house&apos;); -unity-background-image-tint-color: rgb(255, 255, 255);" />
+                <ui:Button name="ShopBtn" focusable="false" tooltip="Shop" text=" " class="control-button yellow-button" style="background-image: url(&apos;project://database/Assets/Images/UI/price-tag.png?fileID=2800000&amp;guid=872a8d02feb06a7428f1b183fe5d5848&amp;type=3#price-tag&apos;);" />
+                <ui:Button name="JobsBtn" focusable="false" tooltip="Jobs" class="control-button yellow-button" style="background-image: url(&apos;project://database/Assets/Images/UI/globe.png?fileID=2800000&amp;guid=3887c6ff21ddba34383f8f97d77cddec&amp;type=3#globe&apos;);" />
                 <ui:VisualElement name="_options">
-                    <ui:Button name="OptionsBtn" focusable="false" tooltip="Options" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/cog.png?fileID=2800000&amp;guid=82fa6101db941784482ff6ed5f910866&amp;type=3#cog&apos;);" />
+                    <ui:Button name="OptionsBtn" focusable="false" tooltip="Options" class="control-button yellow-button" style="background-image: url(&apos;project://database/Assets/Images/UI/cog.png?fileID=2800000&amp;guid=82fa6101db941784482ff6ed5f910866&amp;type=3#cog&apos;);" />
                     <ui:VisualElement name="Options" style="display: flex;">
-                        <ui:Button name="SoundMusicBtn" focusable="false" tooltip="Music" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/speaker.png?fileID=2800000&amp;guid=776d1f12542240d4fbbb8dbc509cfd8c&amp;type=3#speaker&apos;);" />
-                        <ui:Button name="SoundEffectsBtn" focusable="false" tooltip="Effects" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/speaker.png?fileID=2800000&amp;guid=776d1f12542240d4fbbb8dbc509cfd8c&amp;type=3#speaker&apos;);" />
-                        <ui:Button name="InfoBtn" focusable="false" tooltip="About" class="control-button" style="background-image: url(&apos;project://database/Assets/Images/UI/info.png?fileID=2800000&amp;guid=d268e136f52e1a541a8e3708816bc491&amp;type=3#info&apos;);" />
+                        <ui:Button name="SoundMusicBtn" focusable="false" tooltip="Music" class="control-button yellow-button" style="background-image: url(&apos;project://database/Assets/Images/UI/music-on.png?fileID=2800000&amp;guid=c203c1271929e234da61368df2a5134f&amp;type=3#music-on&apos;);" />
+                        <ui:Button name="SoundEffectsBtn" focusable="false" tooltip="Effects" class="control-button yellow-button" style="background-image: url(&apos;project://database/Assets/Images/UI/effects-on.png?fileID=2800000&amp;guid=07c84eb2cd69e704c98d3314107a6734&amp;type=3#effects-on&apos;);" />
+                        <ui:Button name="InfoBtn" focusable="false" tooltip="About" class="control-button yellow-button" style="background-image: url(&apos;project://database/Assets/Images/UI/info.png?fileID=2800000&amp;guid=d268e136f52e1a541a8e3708816bc491&amp;type=3#info&apos;);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
@@ -135,7 +146,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="LoveStatus" tooltip="Love" class="status">
-                    <ui:VisualElement name="_icon" picking-mode="Ignore" class="status-icon" style="background-image: url(&apos;project://database/Assets/Images/UI/hearts.png?fileID=2800000&amp;guid=69e6dc1501363b645816062aabd5b997&amp;type=3#hearts&apos;); -unity-text-align: middle-right;" />
+                    <ui:VisualElement name="_icon" picking-mode="Ignore" class="status-icon" style="background-image: url(&apos;project://database/Assets/Images/UI/hearts.png?fileID=2800000&amp;guid=69e6dc1501363b645816062aabd5b997&amp;type=3#hearts&apos;);" />
                     <ui:VisualElement name="_bar" picking-mode="Ignore" class="status-bar">
                         <ui:VisualElement name="Love" picking-mode="Ignore" class="status-bar-fill" />
                     </ui:VisualElement>
@@ -148,7 +159,7 @@
                 <ui:VisualElement name="_body" picking-mode="Ignore" class="frame modal-body inner-frame">
                     <ui:Button text="&#10;" display-tooltip-when-elided="true" name="_close" focusable="false" class="modal-close" style="background-image: url(&apos;project://database/Assets/Images/UI/close.png?fileID=2800000&amp;guid=8eab811cbfc195944b22421bd794c2df&amp;type=3#close&apos;);" />
                     <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Images/UI/title.png?fileID=2800000&amp;guid=3f3d7cc51c0a03341bdc34f20a5252be&amp;type=3#title&apos;); width: 329px; height: 102px;">
-                        <ui:Label text="Created By" display-tooltip-when-elided="true" name="_title" picking-mode="Ignore" class="info-text" style="height: 100%; -unity-text-align: middle-center; font-size: 36px; color: rgb(255, 255, 255);" />
+                        <ui:Label text="Created By" display-tooltip-when-elided="true" name="_title" picking-mode="Ignore" class="info-text" style="height: 96px; -unity-text-align: middle-center; font-size: 36px; color: rgb(255, 255, 255);" />
                     </ui:VisualElement>
                     <ui:VisualElement class="item-frame author">
                         <ui:Label text="James Smith&#10;&#10;Audio&#10;2D Art" display-tooltip-when-elided="true" name="_james" picking-mode="Ignore" class="info-text" />

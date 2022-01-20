@@ -52,18 +52,13 @@ public class UIShop : MonoBehaviour, IScreen
             var icon = ve.Q<VisualElement>(className: "shop-item-icon");
             icon.style.backgroundImage = food.texture;
             icon.tooltip = food.type.ToString();
-            icon.AddManipulator(new UITooltip(game));
 
             ve.Q<Label>(className: "shop-item-name").text = food.type.ToString();
             ve.Q<Label>(className: "shop-item-energy").text = food.energy.ToString();
             ve.Q<Label>(className: "shop-item-hunger").text = food.hunger.ToString();
             ve.Q<Label>(className: "shop-item-love").text = food.love.ToString();
             ve.Q<Label>(className: "shop-item-purchase-price").text = food.price.ToString();
-            ve.Q<Button>(className: "shop-item-purchase").clicked += () =>
-            {
-                Debug.Log("Purchasing" + food.type.ToString());
-                game.inventory.Purchase(food);
-            };
+            ve.Q<Button>(className: "shop-item-purchase").clicked += () => game.inventory.Purchase(food);
             foodItems.Add(ve);
         }
 
@@ -72,13 +67,17 @@ public class UIShop : MonoBehaviour, IScreen
         foreach (var toy in shopSO.toys)
         {
             var ve = shopItem.Instantiate();
+
+            var icon = ve.Q<VisualElement>(className: "shop-item-icon");
+            icon.tooltip = toy.type.ToString();
+
             ve.Q<VisualElement>(className: "shop-item-icon").style.backgroundImage = toy.texture;
             ve.Q<Label>(className: "shop-item-name").text = toy.type.ToString();
             ve.Q<Label>(className: "shop-item-energy").text = toy.energy.ToString();
             ve.Q<Label>(className: "shop-item-hunger").text = toy.hunger.ToString();
             ve.Q<Label>(className: "shop-item-love").text = toy.love.ToString();
             ve.Q<Label>(className: "shop-item-purchase-price").text = toy.price.ToString();
-            ve.Q<Button>(className: "shop-item-purchase").clicked += () => Debug.Log("Purchasing" + toy.type.ToString());
+            ve.Q<Button>(className: "shop-item-purchase").clicked += () => game.inventory.Purchase(toy);
             toyItems.Add(ve);
         }
 
@@ -87,10 +86,15 @@ public class UIShop : MonoBehaviour, IScreen
         foreach (var furniture in shopSO.furniture)
         {
             var ve = shopItem.Instantiate();
-            ve.Q<VisualElement>(className: "shop-item-icon").style.backgroundImage = furniture.texture;
+
+            var icon = ve.Q<VisualElement>(className: "shop-item-icon");
+            icon.style.backgroundImage = furniture.texture;
+            icon.tooltip = furniture.type.ToString();
+
             ve.Q<Label>(className: "shop-item-energy").text = furniture.energy.ToString();
             ve.Q<Label>(className: "shop-item-name").text = furniture.type.ToString();
             ve.Q<Label>(className: "shop-item-purchase-price").text = furniture.price.ToString();
+            ve.Q<Button>(className: "shop-item-purchase").clicked += () => game.inventory.Purchase(furniture);
             furnitureItems.Add(ve);
         }
 
@@ -99,12 +103,17 @@ public class UIShop : MonoBehaviour, IScreen
         foreach (var tool in shopSO.tools)
         {
             var ve = shopItem.Instantiate();
-            ve.Q<VisualElement>(className: "shop-item-icon").style.backgroundImage = tool.texture;
+
+            var icon = ve.Q<VisualElement>(className: "shop-item-icon");
+            icon.style.backgroundImage = tool.texture;
+            icon.tooltip = tool.type.ToString();
+
             ve.Q<Label>(className: "shop-item-energy").text = tool.energy.ToString();
             ve.Q<Label>(className: "shop-item-hunger").text = tool.hunger.ToString();
             ve.Q<Label>(className: "shop-item-love").text = tool.love.ToString();
             ve.Q<Label>(className: "shop-item-name").text = tool.type.ToString();
             ve.Q<Label>(className: "shop-item-purchase-price").text = tool.price.ToString();
+            ve.Q<Button>(className: "shop-item-purchase").clicked += () => game.inventory.Purchase(tool);
             toolItems.Add(ve);
         }
 
@@ -113,9 +122,15 @@ public class UIShop : MonoBehaviour, IScreen
         foreach (var upgrade in shopSO.upgrades)
         {
             var ve = shopItem.Instantiate();
+
+            var icon = ve.Q<VisualElement>(className: "shop-item-icon");
+            icon.style.backgroundImage = upgrade.texture;
+            icon.tooltip = upgrade.type.ToString();
+
             ve.Q<VisualElement>(className: "shop-item-icon").style.backgroundImage = upgrade.texture;
             ve.Q<Label>(className: "shop-item-name").text = upgrade.type.ToString();
             ve.Q<Label>(className: "shop-item-purchase-price").text = upgrade.price.ToString();
+            ve.Q<Button>(className: "shop-item-purchase").clicked += () => game.inventory.Purchase(upgrade);
             upgradeItems.Add(ve);
         }
 

@@ -38,7 +38,10 @@ public class Location : MonoBehaviour
     {
         yield return new WaitForSeconds(tickRate);
 
-        pollution = Mathf.Min(pollutionMax, pollution + pollutionRate);
+        if (game.job.location != this)
+        {
+            pollution = Mathf.Min(pollutionMax, pollution + pollutionRate);
+        }
 
         StartCoroutine(PollutionTimer());
     }
