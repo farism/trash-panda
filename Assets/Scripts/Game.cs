@@ -13,13 +13,11 @@ public class Game : MonoBehaviour
     public Shop shop;
     public Jobs jobs;
     public Job job;
-
     public Status stats { get; private set; } = new Status();
     public Inventory inventory { get; private set; } = new Inventory();
-
-    // options
     public bool soundMusic { get; private set; } = true;
     public bool soundEffects { get; private set; } = true;
+    public float sleepCooldown = 0;
 
     // sum of total pollution
     public int pollution
@@ -53,9 +51,7 @@ public class Game : MonoBehaviour
         }
     }
 
-    public float pollutionRatio { get => (float)pollution / (pollutionMax * 0.8f); }
-
-    public float sleepCooldown = 0;
+    public float pollutionRatio { get => (float)pollution / (pollutionMax * 0.8f); } // lose when we reach 80% ratio
 
     Vector3 mousePos;
     Vector3 rotation = Vector3.zero;
@@ -127,7 +123,7 @@ public class Game : MonoBehaviour
         SetActiveScreen(view);
         activeScreen.Show();
         ui.ShowView(view);
-        // StartJob(0);
+        StartJob(0);
     }
 
     void Update()
@@ -152,10 +148,10 @@ public class Game : MonoBehaviour
         else if (v == View.Jobs)
         {
             activeScreen = jobs;
-            soundManager.PlayMusic(Music.Job2);
         }
         else if (v == View.Job)
         {
+            soundManager.PlayMusic(Music.Job);
             activeScreen = job;
         }
     }

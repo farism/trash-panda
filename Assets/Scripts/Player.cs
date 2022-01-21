@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -18,12 +19,20 @@ public class Player : MonoBehaviour
     public SpriteRenderer grabber;
     public SpriteRenderer leafblower;
     public SpriteRenderer bulldozer;
-    public LayerMask trashLayerMask;
+    public float leafblowerFuel = 100;
+    public float bulldozerFuel = 100;
     public float bulldozerForceMultiplier = 1;
     public float walkingSpeed = 3;
     public float targetSpeed = 5;
     public float heldRatio { get => (float)held.Count / MaxHeldFromTool(tool); }
-    public string heldText { get => held.Count + "/" + MaxHeldFromTool(tool); }
+    public string heldText
+    {
+        get
+        {
+            var max = MaxHeldFromTool(tool);
+            return max == 0 ? "" : held.Count + "/" + max;
+        }
+    }
 
     Vector3 mousePos;
     Vector3 walkTarget = Vector3.zero;
@@ -34,18 +43,73 @@ public class Player : MonoBehaviour
         this.tool = tool;
 
         // don't render bulldozer meshes
-        bulldozerBodyRenderer.enabled = bulldozerBladeRenderer.enabled = tool == Tool.Bulldozer;
+        // bulldozerBodyRenderer.enabled = bulldozerBladeRenderer.enabled = tool == Tool.Bulldozer;
 
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Trash"), tool != Tool.Bulldozer);
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("PlayerBulldozer"), LayerMask.NameToLayer("Trash"), tool != Tool.Bulldozer);
 
         hand.enabled = spike.enabled = grabber.enabled = leafblower.enabled = bulldozer.enabled = false;
 
         SpriteFromTool(this.tool).enabled = true;
     }
 
-    public void SetActive(bool active)
+    public void HoldTrash(Trash trash)
     {
-        gameObject.SetActive(active);
+        if (!trash.held)
+        {
+            held.Add(trash);
+            trash.gameObject.layer = LayerMask.NameToLayer("TrashHeld");
+            trash.rb.constraints = RigidbodyConstraints.FreezeAll;
+            trash.renderer.enabled = false;
+        }
+    }
+
+    public void DropTrash(Vector3 position)
+    {
+        foreach (var trash in held)
+        {
+            var dropOffset = new Vector3(Random.Range(0, 1), Random.Range(0, 1), Random.Range(0, 1));
+            trash.rb.constraints = RigidbodyConstraints.None;
+            trash.rb.position = position + dropOffset;
+            trash.rb.velocity = Vector3.zero;
+            trash.rb.angularVelocity = Vector3.zero;
+            StartCoroutine(ShowTrash(trash));
+        }
+
+        held.RemoveAll((trash) => true);
+    }
+
+    public void ThrowTrash(Vector3 position)
+    {
+        if (tool == Tool.Grabber && heldRatio > 0)
+        {
+            foreach (var trash in held)
+            {
+                var dropOffset = new Vector3(Random.Range(0, 1), Random.Range(0, 1), Random.Range(0, 1));
+                trash.rb.constraints = RigidbodyConstraints.None;
+                trash.rb.position = position + dropOffset;
+                trash.rb.velocity = Vector3.zero;
+                trash.rb.angularVelocity = Vector3.zero;
+                StartCoroutine(ShowTrash(trash));
+            }
+
+            StartCoroutine(StopMoving());
+
+            held.RemoveAll((trash) => true);
+        }
+    }
+
+    IEnumerator ShowTrash(Trash trash)
+    {
+        yield return new WaitForSeconds(Time.fixedDeltaTime);
+
+        trash.renderer.enabled = true;
+    }
+
+    IEnumerator StopMoving()
+    {
+        yield return new WaitForSeconds(Time.deltaTime);
+
+        walkTarget = Vector3.zero;
     }
 
     void Awake()
@@ -67,6 +131,8 @@ public class Player : MonoBehaviour
             UpdateHighlightedTrash();
 
             UpdateWalkTarget();
+
+            UpdateFuel();
         }
     }
 
@@ -87,9 +153,7 @@ public class Player : MonoBehaviour
 
     void UpdateMousePos()
     {
-        var pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-        // pos.z = 0;
-        mousePos = pos;
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
     }
 
     void UpdateWalkTarget()
@@ -102,14 +166,13 @@ public class Player : MonoBehaviour
 
     void UpdateHighlightedTrash()
     {
-        // var colliders = Physics.OverlapSphere(mousePos, 1, trashLayerMask);
         var position = new Vector3(mousePos.x, mousePos.y, -1);
         target.transform.position = Vector3.Lerp(target.transform.position, position, Time.deltaTime * targetSpeed);
 
-        foreach (var trash in game.job.trashPile)
-        {
-            trash.SetHighlight(Vector2.Distance(trash.transform.position, mousePos) < 1f);
-        }
+        // foreach (var trash in game.job.trashPile)
+        // {
+        //     trash.SetHighlight(Vector2.Distance(trash.transform.position, mousePos) < 1f);
+        // }
     }
 
     void UpdateWalkingPosition()
@@ -133,9 +196,9 @@ public class Player : MonoBehaviour
 
                 foreach (var trash in inRange)
                 {
-                    if (heldRatio < 1)
+                    if (heldRatio < 1 && !held.Contains(trash))
                     {
-                        held.Add(trash);
+                        HoldTrash(trash);
                     }
                 }
 
@@ -158,6 +221,18 @@ public class Player : MonoBehaviour
             var force = new Vector3(direction.x, direction.y, 0).normalized;
 
             bulldozerBody.AddForce(force * bulldozerForceMultiplier);
+        }
+    }
+
+    void UpdateFuel()
+    {
+        if (tool == Tool.LeafBlower && Input.GetMouseButton(1))
+        {
+            leafblowerFuel = Mathf.Max(0, leafblowerFuel - Time.deltaTime);
+        }
+        else if (tool == Tool.Bulldozer && Input.GetMouseButton(0))
+        {
+            bulldozerFuel = Mathf.Max(0, bulldozerFuel - Time.deltaTime);
         }
     }
 
@@ -194,4 +269,6 @@ public class Player : MonoBehaviour
                 return hand;
         }
     }
+
+
 }

@@ -5,12 +5,10 @@ public class UITooltip : Manipulator
 {
     Game game;
     VisualElement tooltip { get => game.ui.tooltip; }
-    Label label;
 
     public UITooltip(Game game)
     {
         this.game = game;
-        label = tooltip.Q<Label>();
     }
 
     protected override void RegisterCallbacksOnTarget()
@@ -33,12 +31,8 @@ public class UITooltip : Manipulator
         {
             return;
         }
-        var size = tooltip.Q<Label>().MeasureTextSize(target.tooltip, 0, VisualElement.MeasureMode.Undefined, 0, VisualElement.MeasureMode.Undefined);
-        label.text = target.tooltip;
-        tooltip.style.width = size.x + tooltip.resolvedStyle.paddingLeft + tooltip.resolvedStyle.paddingRight;
-        tooltip.style.height = size.y + tooltip.resolvedStyle.paddingTop + tooltip.resolvedStyle.paddingBottom;
-        tooltip.AddToClassList("active");
-        tooltip.BringToFront();
+
+        game.ui.SetTooltip(this);
     }
 
     private void MouseOut(MouseOutEvent e)
@@ -48,6 +42,7 @@ public class UITooltip : Manipulator
 
     private void MouseMove(MouseMoveEvent e)
     {
+        game.ui.SetTooltip(this);
         var mx = Input.mousePosition.x;
         var my = Input.mousePosition.y;
         var ttw = tooltip.resolvedStyle.width;
@@ -55,8 +50,6 @@ public class UITooltip : Manipulator
         var tw = target.resolvedStyle.width;
         var th = target.resolvedStyle.height;
         var offset = Mathf.Max(32, th / 2);
-
-        label.text = target.tooltip;
         tooltip.style.left = mx - ttw / 2;
 
         if (my > Screen.height / 2)

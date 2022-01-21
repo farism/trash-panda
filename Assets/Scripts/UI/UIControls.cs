@@ -26,13 +26,25 @@ public class UIControls : MonoBehaviour
 
         // controls
         homeBtn = root.Q<Button>("HomeBtn");
-        homeBtn.clicked += () => game.SetView(View.Home);
+        homeBtn.clicked += () =>
+        {
+            game.SetView(View.Home);
+            UI.Hide(options);
+        };
 
         shopBtn = root.Q<Button>("ShopBtn");
-        shopBtn.clicked += () => game.SetView(View.Shop);
+        shopBtn.clicked += () =>
+        {
+            game.SetView(View.Shop);
+            UI.Hide(options);
+        };
 
         jobsBtn = root.Q<Button>("JobsBtn");
-        jobsBtn.clicked += () => game.SetView(View.Jobs);
+        jobsBtn.clicked += () =>
+        {
+            game.SetView(View.Jobs);
+            UI.Hide(options);
+        };
 
         optionsBtn = root.Q<Button>("OptionsBtn");
         optionsBtn.clicked += () => UI.Toggle(options);

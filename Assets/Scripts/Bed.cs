@@ -24,8 +24,7 @@ public class Bed : MonoBehaviour
         {
             if (game.sleepCooldown == 0)
             {
-                game.sleepCooldown = 30;
-                game.stats.AddEnergy(furniture.energy);
+                game.home.Sleep(furniture);
                 spriteOutliner.color = Color.gray;
             }
         }

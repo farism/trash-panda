@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 
@@ -5,6 +6,10 @@ public class Home : MonoBehaviour, IScreen
 {
     public Game game;
     public GameObject raccoonFront;
+    public GameObject raccoonFrontHappy;
+    public GameObject raccoonFrontSad;
+    public GameObject raccoonFrontEating;
+    public GameObject raccoonFrontSleeping;
     public GameObject raccoonSide;
     public GameObject background;
     public SpriteRenderer backgroundImage;
@@ -17,6 +22,8 @@ public class Home : MonoBehaviour, IScreen
     float edge = 0;
     float backgroundX;
     float scaleX;
+    Coroutine feedCoroutine;
+    Coroutine sleepCoroutine;
 
     public void Show()
     {
@@ -40,6 +47,8 @@ public class Home : MonoBehaviour, IScreen
         game.stats.AddEnergy(food.energy);
         game.stats.AddHunger(food.hunger);
         game.stats.AddLove(food.love);
+        ShowFacialExpression(raccoonFrontEating);
+        feedCoroutine = StartCoroutine(ShowIdleFacialExpressionAfter(1));
     }
 
     public void Play(ToyScriptableObject toy)
@@ -47,6 +56,15 @@ public class Home : MonoBehaviour, IScreen
         game.stats.AddEnergy(toy.energy);
         game.stats.AddHunger(toy.hunger);
         game.stats.AddLove(toy.love);
+        ShowFacialExpression(raccoonFrontHappy);
+        StartCoroutine(ShowIdleFacialExpressionAfter(1));
+    }
+
+    public void Sleep(FurnitureScriptableObject furniture)
+    {
+        game.sleepCooldown = 30;
+        backgroundX = background.transform.position.x;
+        sleepCoroutine = StartCoroutine(GoToSleep(furniture, 5));
     }
 
     public void UpdateFurniture()
@@ -86,14 +104,21 @@ public class Home : MonoBehaviour, IScreen
 
     void Update()
     {
-        if (game.view != View.Home)
+        if (game.view == View.Home)
         {
-            return;
+            UpdateRaccoon();
+
+            if (feedCoroutine == null && sleepCoroutine == null)
+            {
+                ShowIdleFacialExpression();
+            }
+
+            if (sleepCoroutine == null)
+            {
+
+                UpdateBackground();
+            }
         }
-
-        UpdateRaccoon();
-
-        UpdateBackground();
     }
 
     void UpdateRaccoon()
@@ -153,5 +178,43 @@ public class Home : MonoBehaviour, IScreen
         }
 
         background.transform.position = p;
+    }
+
+    public IEnumerator GoToSleep(FurnitureScriptableObject furniture, float duration)
+    {
+        ShowFacialExpression(raccoonFrontSleeping);
+
+        game.ui.ShowDim(true);
+
+        yield return new WaitForSeconds(duration);
+
+        game.stats.AddEnergy(furniture.energy);
+
+        ShowIdleFacialExpression();
+
+        game.ui.ShowDim(false);
+
+        sleepCoroutine = null;
+    }
+
+    void ShowFacialExpression(GameObject go)
+    {
+        raccoonFrontHappy.SetActive(false);
+        raccoonFrontSad.SetActive(false);
+        raccoonFrontEating.SetActive(false);
+        raccoonFrontSleeping.SetActive(false);
+        go.SetActive(true);
+    }
+
+    void ShowIdleFacialExpression()
+    {
+        ShowFacialExpression(game.stats.isHappy ? raccoonFrontHappy : raccoonFrontSad);
+    }
+
+    IEnumerator ShowIdleFacialExpressionAfter(float duration = 0)
+    {
+        yield return new WaitForSeconds(duration);
+
+        ShowIdleFacialExpression();
     }
 }

@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/Resources/Styles/UI.uss?fileID=7433441132597879392&amp;guid=889240535a1001840af5edc9c0cc2540&amp;type=3#UI" />
     <Style src="project://database/Assets/Resources/Styles/Shop.uss?fileID=7433441132597879392&amp;guid=4250d0bb93945f0438abbd565f9eac60&amp;type=3#Shop" />
     <ui:VisualElement name="_item" class="shop-item item-frame">
-        <ui:VisualElement name="Icon" tooltip="Item" picking-mode="Ignore" class="shop-item-icon" style="-unity-background-scale-mode: scale-to-fit; background-image: url(&apos;project://database/Assets/Images/Items/Food/water.png?fileID=2800000&amp;guid=18f28dbed3fffee40bd8430f514de4a7&amp;type=3#water&apos;);" />
+        <ui:VisualElement name="Icon" tooltip="Item" class="shop-item-icon" style="-unity-background-scale-mode: scale-to-fit; background-image: url(&apos;project://database/Assets/Images/Items/Food/water.png?fileID=2800000&amp;guid=18f28dbed3fffee40bd8430f514de4a7&amp;type=3#water&apos;);" />
         <ui:VisualElement name="_description" picking-mode="Ignore" class="shop-item-description">
             <ui:Label text="Item Name" name="_text" picking-mode="Ignore" class="shop-item-name" />
             <ui:VisualElement name="_stats" picking-mode="Ignore" class="shop-item-stats">
@@ -24,5 +24,6 @@
             <ui:VisualElement name="_coin" picking-mode="Ignore" class="shop-item-purchase-icon" style="background-image: url(&apos;project://database/Assets/Images/UI/coin.png?fileID=2800000&amp;guid=a06fc8d60ac3f0f47893f101e48ab001&amp;type=3#coin&apos;);" />
             <ui:Label text="12345" name="Price" picking-mode="Ignore" class="shop-item-purchase-price" />
         </ui:Button>
+        <ui:VisualElement class="frame shop-item-purchased-overlay" />
     </ui:VisualElement>
 </ui:UXML>

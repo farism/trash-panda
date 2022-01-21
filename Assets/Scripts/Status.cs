@@ -3,10 +3,9 @@ using UnityEngine;
 public class Status
 {
     public float energy = 25;
-
     public float hunger = 50;
-
     public float love = 75;
+    public bool isHappy { get => (energy + hunger + love) / 300 > 0.25; }
 
     public void AddEnergy(int value)
     {

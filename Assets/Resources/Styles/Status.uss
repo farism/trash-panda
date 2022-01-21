@@ -27,7 +27,7 @@
   border-bottom-width: 2px;
   border-right-width: 2px;
   flex: 1 1 auto;
-  height: 8px;
+  height: 10px;
   justify-content: center;
   margin: 0 24px 0 8px;
   top: 2px;

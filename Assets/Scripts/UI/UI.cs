@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,10 +11,13 @@ public class UI : MonoBehaviour
     public AudioClip hoverSound;
     public AudioClip clickSound;
     public VisualElement tooltip;
+    public Label tooltipLabel;
 
     VisualElement root;
+    VisualElement dim;
     VisualElement frame;
     VisualElement infoModal;
+    UITooltip activeTooltip;
     AudioSource audioSource;
     IScreen activeScreen;
     VisualElement activeShopCategory;
@@ -76,6 +81,28 @@ public class UI : MonoBehaviour
         Show(infoModal);
     }
 
+    public void ShowDim(bool show)
+    {
+        dim.pickingMode = show ? PickingMode.Position : PickingMode.Ignore;
+
+        if (show)
+        {
+            dim.AddToClassList("show");
+        }
+        else
+        {
+            dim.RemoveFromClassList("show");
+        }
+    }
+
+    public void SetTooltip(UITooltip tip)
+    {
+        activeTooltip = tip;
+        SetTooltipText(tip.target.tooltip);
+        tooltip.AddToClassList("active");
+        tooltip.BringToFront();
+    }
+
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -84,7 +111,8 @@ public class UI : MonoBehaviour
     void Start()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
-        frame = root.Q<VisualElement>("Frame");
+
+        dim = root.Q<VisualElement>("Dim");
 
         // modals
         infoModal = root.Q<VisualElement>("InfoModal");
@@ -95,9 +123,13 @@ public class UI : MonoBehaviour
 
         tooltip = root.Q<VisualElement>("Tooltip");
 
+        tooltipLabel = tooltip.Q<Label>();
+
         SetupAudioCallbacks();
 
         SetupTooltips(root);
+
+        StartCoroutine(UpdateTooltip());
     }
 
     void Update()
@@ -131,5 +163,23 @@ public class UI : MonoBehaviour
                 game.soundManager.PlayEffect(Effect.ButtonClick);
             };
         }
+    }
+
+    IEnumerator UpdateTooltip()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if (activeTooltip != null)
+        {
+            SetTooltipText(activeTooltip.target.tooltip);
+        }
+
+        StartCoroutine(UpdateTooltip());
+    }
+
+
+    void SetTooltipText(string tooltip)
+    {
+        tooltipLabel.text = tooltip;
     }
 }

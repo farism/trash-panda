@@ -46,6 +46,10 @@ public class SoundManager : MonoBehaviour
         {
             clip = shop;
         }
+        else if (music == Music.Job)
+        {
+            clip = job;
+        }
 
         if (clip != musicSource.clip)
         {

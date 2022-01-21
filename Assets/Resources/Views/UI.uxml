@@ -103,6 +103,7 @@
                 </ui:Button>
             </ui:VisualElement>
             <ui:Label text="0 / 2" display-tooltip-when-elided="true" name="Held" />
+            <ui:Label text="Pollution: 0%" display-tooltip-when-elided="true" name="LocationPollution" />
         </ui:VisualElement>
         <ui:VisualElement name="Top">
             <ui:VisualElement name="PollutionContainer">
@@ -110,9 +111,9 @@
                     <ui:VisualElement name="PollutionFill" picking-mode="Ignore" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="Currency" class="item-frame">
-                <ui:VisualElement name="CurrencyIcon" style="background-image: url(&apos;project://database/Assets/Images/UI/coin.png?fileID=2800000&amp;guid=a06fc8d60ac3f0f47893f101e48ab001&amp;type=3#coin&apos;);" />
-                <ui:Label text="1,000,000" name="CurrencyText" />
+            <ui:VisualElement name="Currency" tooltip="Shiny Things" class="item-frame">
+                <ui:VisualElement name="CurrencyIcon" picking-mode="Ignore" style="background-image: url(&apos;project://database/Assets/Images/UI/coin.png?fileID=2800000&amp;guid=a06fc8d60ac3f0f47893f101e48ab001&amp;type=3#coin&apos;);" />
+                <ui:Label text="1,000,000" name="CurrencyText" picking-mode="Ignore" />
             </ui:VisualElement>
             <ui:VisualElement name="Controls">
                 <ui:Button name="HomeBtn" focusable="false" tooltip="Home" class="control-button yellow-button" style="background-image: url(&apos;project://database/Assets/Images/UI/house.png?fileID=2800000&amp;guid=35addc19ad37218428eec9ac5b2fc373&amp;type=3#house&apos;); -unity-background-image-tint-color: rgb(255, 255, 255);" />
@@ -175,5 +176,6 @@
             <ui:Label text="Label" display-tooltip-when-elided="false" name="_text" picking-mode="Ignore" />
         </ui:VisualElement>
         <ui:VisualElement name="ActiveItem" text="2" />
+        <ui:VisualElement name="Dim" picking-mode="Ignore" class="frame" />
     </ui:VisualElement>
 </ui:UXML>

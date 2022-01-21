@@ -69,13 +69,11 @@ public class Job : MonoBehaviour, IScreen
         }
     }
 
-    public void DestroyTrash(GameObject gameObject)
+    public void DisposeTrash(Trash trash)
     {
-        var trash = gameObject.GetComponent<Trash>();
-
+        location.ReducePollution(1);
         trashPile.Remove(trash);
-
-        GameObject.Destroy(gameObject, 0.1f);
+        GameObject.Destroy(trash.gameObject, 0.1f);
     }
 
     void Awake()

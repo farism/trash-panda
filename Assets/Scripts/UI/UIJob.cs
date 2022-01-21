@@ -7,12 +7,15 @@ public class UIJob : MonoBehaviour, IScreen
     public Game game;
     VisualElement root;
     VisualElement job;
+    Label pollution;
     Label held;
     Button skill0;
     Button skill1;
     Button skill2;
     Button skill3;
     Button skill4;
+    VisualElement skill3Fuel;
+    VisualElement skill4Fuel;
     List<VisualElement> cooldowns;
 
     public void Show()
@@ -31,6 +34,8 @@ public class UIJob : MonoBehaviour, IScreen
 
         job = root.Q<VisualElement>("Job");
 
+        pollution = job.Q<Label>("LocationPollution");
+
         held = job.Q<Label>("Held");
 
         skill0 = job.Q<Button>("Skill0");
@@ -48,6 +53,10 @@ public class UIJob : MonoBehaviour, IScreen
         skill4 = job.Q<Button>("Skill4");
         skill4.clicked += () => game.job.ActivateTool(Tool.Bulldozer);
 
+        skill3Fuel = job.Q<VisualElement>("Skill3Fuel");
+
+        skill4Fuel = job.Q<VisualElement>("Skill4Fuel");
+
         cooldowns = job.Query<VisualElement>(className: "skill-cooldown").ToList();
 
         Hide();
@@ -60,6 +69,10 @@ public class UIJob : MonoBehaviour, IScreen
             UpdateActiveTool();
 
             UpdateHeld();
+
+            UpdateFuel();
+
+            UpdatePollution();
 
             UpdateCooldown();
         }
@@ -96,11 +109,22 @@ public class UIJob : MonoBehaviour, IScreen
         held.style.top = Screen.height - Input.mousePosition.y;
     }
 
+    void UpdateFuel()
+    {
+        skill3Fuel.style.width = Length.Percent(game.job.player.leafblowerFuel);
+        skill4Fuel.style.width = Length.Percent(game.job.player.bulldozerFuel);
+    }
+
     void UpdateCooldown()
     {
         foreach (var cd in cooldowns)
         {
             cd.style.width = Length.Percent(game.job.cooldownRatio * 100);
         }
+    }
+
+    void UpdatePollution()
+    {
+        pollution.text = "Pollution: " + Mathf.RoundToInt(game.job.location.pollutionRatio * 100) + "%";
     }
 }

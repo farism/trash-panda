@@ -1,3 +1,5 @@
+using System;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -45,96 +47,99 @@ public class UIShop : MonoBehaviour, IScreen
 
         food = shop.Q<VisualElement>("Food");
         var foodItems = food.Q<ScrollView>("Items");
-        foreach (var food in shopSO.food)
+        foreach (var so in shopSO.food)
         {
             var ve = shopItem.Instantiate();
+            ItemIcon(ve, so.texture, so.type.ToString());
 
-            var icon = ve.Q<VisualElement>(className: "shop-item-icon");
-            icon.style.backgroundImage = food.texture;
-            icon.tooltip = food.type.ToString();
-
-            ve.Q<Label>(className: "shop-item-name").text = food.type.ToString();
-            ve.Q<Label>(className: "shop-item-energy").text = food.energy.ToString();
-            ve.Q<Label>(className: "shop-item-hunger").text = food.hunger.ToString();
-            ve.Q<Label>(className: "shop-item-love").text = food.love.ToString();
-            ve.Q<Label>(className: "shop-item-purchase-price").text = food.price.ToString();
-            ve.Q<Button>(className: "shop-item-purchase").clicked += () => game.inventory.Purchase(food);
+            ve.Q<Label>(className: "shop-item-name").text = so.type.ToString();
+            ve.Q<Label>(className: "shop-item-energy").text = so.energy.ToString();
+            ve.Q<Label>(className: "shop-item-hunger").text = so.hunger.ToString();
+            ve.Q<Label>(className: "shop-item-love").text = so.love.ToString();
+            ve.Q<Label>(className: "shop-item-purchase-price").text = so.price.ToString();
+            ve.Q<Button>(className: "shop-item-purchase").clicked += () => game.inventory.Purchase(so);
             foodItems.Add(ve);
         }
 
         toys = shop.Q<VisualElement>("Toys");
         var toyItems = toys.Q<ScrollView>("Items");
-        foreach (var toy in shopSO.toys)
+        foreach (var so in shopSO.toys)
         {
             var ve = shopItem.Instantiate();
+            ItemIcon(ve, so.texture, so.type.ToString());
+            TogglePurchased(so, ve);
 
-            var icon = ve.Q<VisualElement>(className: "shop-item-icon");
-            icon.tooltip = toy.type.ToString();
-
-            ve.Q<VisualElement>(className: "shop-item-icon").style.backgroundImage = toy.texture;
-            ve.Q<Label>(className: "shop-item-name").text = toy.type.ToString();
-            ve.Q<Label>(className: "shop-item-energy").text = toy.energy.ToString();
-            ve.Q<Label>(className: "shop-item-hunger").text = toy.hunger.ToString();
-            ve.Q<Label>(className: "shop-item-love").text = toy.love.ToString();
-            ve.Q<Label>(className: "shop-item-purchase-price").text = toy.price.ToString();
-            ve.Q<Button>(className: "shop-item-purchase").clicked += () => game.inventory.Purchase(toy);
+            ve.Q<VisualElement>(className: "shop-item-icon").style.backgroundImage = so.texture;
+            ve.Q<Label>(className: "shop-item-name").text = so.type.ToString();
+            ve.Q<Label>(className: "shop-item-energy").text = so.energy.ToString();
+            ve.Q<Label>(className: "shop-item-hunger").text = so.hunger.ToString();
+            ve.Q<Label>(className: "shop-item-love").text = so.love.ToString();
+            ve.Q<Label>(className: "shop-item-purchase-price").text = so.price.ToString();
+            ve.Q<Button>(className: "shop-item-purchase").clicked += () =>
+            {
+                game.inventory.Purchase(so);
+                TogglePurchased(so, ve);
+            };
             toyItems.Add(ve);
         }
 
         furniture = shop.Q<VisualElement>("Furniture");
         var furnitureItems = furniture.Q<ScrollView>("Items");
-        foreach (var furniture in shopSO.furniture)
+        foreach (var so in shopSO.furniture)
         {
             var ve = shopItem.Instantiate();
+            ItemIcon(ve, so.texture, so.type.ToString());
+            TogglePurchased(so, ve);
 
-            var icon = ve.Q<VisualElement>(className: "shop-item-icon");
-            icon.style.backgroundImage = furniture.texture;
-            icon.tooltip = furniture.type.ToString();
-
-            ve.Q<Label>(className: "shop-item-energy").text = furniture.energy.ToString();
-            ve.Q<Label>(className: "shop-item-name").text = furniture.type.ToString();
-            ve.Q<Label>(className: "shop-item-purchase-price").text = furniture.price.ToString();
+            ve.Q<Label>(className: "shop-item-energy").text = so.energy.ToString();
+            ve.Q<Label>(className: "shop-item-name").text = so.type.ToString();
+            ve.Q<Label>(className: "shop-item-purchase-price").text = so.price.ToString();
             ve.Q<Button>(className: "shop-item-purchase").clicked += () =>
             {
-                game.inventory.Purchase(furniture);
+                game.inventory.Purchase(so);
                 game.home.UpdateFurniture();
+                TogglePurchased(so, ve);
             };
             furnitureItems.Add(ve);
         }
 
         tools = shop.Q<VisualElement>("Tools");
         var toolItems = tools.Q<ScrollView>("Items");
-        foreach (var tool in shopSO.tools)
+        foreach (var so in shopSO.tools)
         {
             var ve = shopItem.Instantiate();
+            ItemIcon(ve, so.texture, so.type.ToString());
+            TogglePurchased(so, ve);
 
-            var icon = ve.Q<VisualElement>(className: "shop-item-icon");
-            icon.style.backgroundImage = tool.texture;
-            icon.tooltip = tool.type.ToString();
-
-            ve.Q<Label>(className: "shop-item-energy").text = tool.energy.ToString();
-            ve.Q<Label>(className: "shop-item-hunger").text = tool.hunger.ToString();
-            ve.Q<Label>(className: "shop-item-love").text = tool.love.ToString();
-            ve.Q<Label>(className: "shop-item-name").text = tool.type.ToString();
-            ve.Q<Label>(className: "shop-item-purchase-price").text = tool.price.ToString();
-            ve.Q<Button>(className: "shop-item-purchase").clicked += () => game.inventory.Purchase(tool);
+            ve.Q<Label>(className: "shop-item-energy").text = so.energy.ToString();
+            ve.Q<Label>(className: "shop-item-hunger").text = so.hunger.ToString();
+            ve.Q<Label>(className: "shop-item-love").text = so.love.ToString();
+            ve.Q<Label>(className: "shop-item-name").text = so.type.ToString();
+            ve.Q<Label>(className: "shop-item-purchase-price").text = so.price.ToString();
+            ve.Q<Button>(className: "shop-item-purchase").clicked += () =>
+            {
+                game.inventory.Purchase(so);
+                TogglePurchased(so, ve);
+            };
             toolItems.Add(ve);
         }
 
         upgrades = shop.Q<VisualElement>("Upgrades");
         var upgradeItems = upgrades.Q<ScrollView>("Items");
-        foreach (var upgrade in shopSO.upgrades)
+        foreach (var so in shopSO.upgrades)
         {
             var ve = shopItem.Instantiate();
+            ItemIcon(ve, so.texture, so.type.ToString());
+            TogglePurchased(so, ve);
 
-            var icon = ve.Q<VisualElement>(className: "shop-item-icon");
-            icon.style.backgroundImage = upgrade.texture;
-            icon.tooltip = upgrade.type.ToString();
-
-            ve.Q<VisualElement>(className: "shop-item-icon").style.backgroundImage = upgrade.texture;
-            ve.Q<Label>(className: "shop-item-name").text = upgrade.type.ToString();
-            ve.Q<Label>(className: "shop-item-purchase-price").text = upgrade.price.ToString();
-            ve.Q<Button>(className: "shop-item-purchase").clicked += () => game.inventory.Purchase(upgrade);
+            ve.Q<VisualElement>(className: "shop-item-icon").style.backgroundImage = so.texture;
+            ve.Q<Label>(className: "shop-item-name").text = so.type.ToString();
+            ve.Q<Label>(className: "shop-item-purchase-price").text = so.price.ToString();
+            ve.Q<Button>(className: "shop-item-purchase").clicked += () =>
+            {
+                game.inventory.Purchase(so);
+                TogglePurchased(so, ve);
+            };
             upgradeItems.Add(ve);
         }
 
@@ -164,6 +169,14 @@ public class UIShop : MonoBehaviour, IScreen
         }
     }
 
+    void ItemIcon(VisualElement ve, Texture2D texture, string tooltip)
+    {
+        var icon = ve.Q<VisualElement>(className: "shop-item-icon");
+        icon.style.backgroundImage = texture;
+        // icon.tooltip = String.Join(" ", Regex.Split(tooltip, @"(?<!^)(?=[A-Z])"));
+        // icon.AddManipulator(new UITooltip(game));
+    }
+
     void ShowCategory(VisualElement btn, VisualElement ve)
     {
         foodBtn.RemoveFromClassList("active");
@@ -181,5 +194,37 @@ public class UIShop : MonoBehaviour, IScreen
         activeCategory = ve;
 
         UI.Show(activeCategory);
+    }
+
+    void TogglePurchased(ToyScriptableObject so, VisualElement ve)
+    {
+        if (game.inventory.IsPurchased(so))
+        {
+            ve.AddToClassList("purchased");
+        }
+    }
+
+    void TogglePurchased(FurnitureScriptableObject so, VisualElement ve)
+    {
+        if (game.inventory.IsPurchased(so))
+        {
+            ve.AddToClassList("purchased");
+        }
+    }
+
+    void TogglePurchased(ToolScriptableObject so, VisualElement ve)
+    {
+        if (game.inventory.IsPurchased(so))
+        {
+            ve.AddToClassList("purchased");
+        }
+    }
+
+    void TogglePurchased(UpgradeScriptableObject so, VisualElement ve)
+    {
+        if (game.inventory.IsPurchased(so))
+        {
+            ve.AddToClassList("purchased");
+        }
     }
 }

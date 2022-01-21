@@ -133,61 +133,6 @@ public class Inventory
         }
     }
 
-    public bool HasToy(ToyScriptableObject so)
-    {
-        switch (so.type)
-        {
-            case Toy.Chewtoy:
-                return toyChewtoy;
-            case Toy.CatTree:
-                return toyCatTree;
-            case Toy.Beachball:
-                return toyBeachball;
-            case Toy.LaserPointer:
-                return toyLaserPointer;
-        }
-        return false;
-    }
-
-    public bool HasFurniture(FurnitureScriptableObject so)
-    {
-        switch (so.type)
-        {
-            case Furniture.SmallBed:
-                return furnitureSmallBed;
-            case Furniture.Beanbag:
-                return furnitureBeanbag;
-            case Furniture.Futon:
-                return furnitureFuton;
-            case Furniture.BigBed:
-                return furnitureBigBed;
-        }
-        return false;
-    }
-
-    public bool HasTool(ToolScriptableObject so)
-    {
-        switch (so.type)
-        {
-            case Tool.Hand:
-                return toolHand;
-            case Tool.Spike:
-                return toolSpike;
-            case Tool.Grabber:
-                return toolGrabber;
-            case Tool.LeafBlower:
-                return toolLeafBlower;
-            case Tool.Bulldozer:
-                return toolBulldozer;
-        }
-        return false;
-    }
-
-    public bool HasUpgrade(UpgradeScriptableObject so)
-    {
-        return false;
-    }
-
     public void Purchase(FoodScriptableObject so)
     {
         if (currency >= so.price)
@@ -278,6 +223,22 @@ public class Inventory
         }
     }
 
+    public bool IsPurchased(ToyScriptableObject so)
+    {
+        switch (so.type)
+        {
+            case Toy.Chewtoy:
+                return toyChewtoy;
+            case Toy.CatTree:
+                return toyCatTree;
+            case Toy.Beachball:
+                return toyBeachball;
+            case Toy.LaserPointer:
+                return toyLaserPointer;
+        }
+        return false;
+    }
+
     public void Purchase(FurnitureScriptableObject so)
     {
         if (currency >= so.price)
@@ -301,6 +262,22 @@ public class Inventory
                 furnitureBigBed = true;
             }
         }
+    }
+
+    public bool IsPurchased(FurnitureScriptableObject so)
+    {
+        switch (so.type)
+        {
+            case Furniture.SmallBed:
+                return furnitureSmallBed;
+            case Furniture.Beanbag:
+                return furnitureBeanbag;
+            case Furniture.Futon:
+                return furnitureFuton;
+            case Furniture.BigBed:
+                return furnitureBigBed;
+        }
+        return false;
     }
 
     public void Purchase(ToolScriptableObject so)
@@ -329,12 +306,34 @@ public class Inventory
 
     }
 
+    public bool IsPurchased(ToolScriptableObject so)
+    {
+        switch (so.type)
+        {
+            case Tool.Hand:
+                return toolHand;
+            case Tool.Spike:
+                return toolSpike;
+            case Tool.Grabber:
+                return toolGrabber;
+            case Tool.LeafBlower:
+                return toolLeafBlower;
+            case Tool.Bulldozer:
+                return toolBulldozer;
+        }
+        return false;
+    }
+
     public void Purchase(UpgradeScriptableObject so)
     {
         if (currency > so.price)
         {
             currency -= so.price;
         }
+    }
 
+    public bool IsPurchased(UpgradeScriptableObject so)
+    {
+        return false;
     }
 }

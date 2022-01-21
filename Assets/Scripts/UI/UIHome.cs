@@ -50,7 +50,6 @@ public class UIHome : MonoBehaviour, IScreen
             btn.RegisterCallback<MouseDownEvent>((ctx) =>
             {
                 SetActiveFood(so);
-                UI.Hide(food);
             });
             foodItems.Add(btn);
             foodBtns.Add(btn);
@@ -68,8 +67,8 @@ public class UIHome : MonoBehaviour, IScreen
                 SetActiveToy(so);
                 UI.Hide(toys);
             });
-            toyItems.Insert(0, btn);
-            toyBtns.Insert(0, btn);
+            toyItems.Add(btn);
+            toyBtns.Add(btn);
         }
 
         foodBtn = home.Q<Button>("FoodBtn");
@@ -110,7 +109,9 @@ public class UIHome : MonoBehaviour, IScreen
         {
             UpdateQuantities();
 
-            UpdateButtonVisibility();
+            UpdateToys();
+
+            UpdateMoving();
 
             UpdateActiveItem();
 
@@ -119,15 +120,10 @@ public class UIHome : MonoBehaviour, IScreen
                 UI.Hide(food);
                 UI.Hide(toys);
             }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                // Debug.Log(activeToy);
-            }
         }
     }
 
-    void UpdateButtonVisibility()
+    void UpdateMoving()
     {
         var currentActive = game.home.raccoonSide.activeSelf;
 
@@ -163,6 +159,16 @@ public class UIHome : MonoBehaviour, IScreen
             {
                 btn.style.display = DisplayStyle.None;
             }
+        }
+    }
+
+    void UpdateToys()
+    {
+        for (var i = 0; i < toyBtns.Count; i++)
+        {
+            var btn = toyBtns[i];
+            var toy = shopSO.toys[i];
+            btn.style.display = game.inventory.IsPurchased(toy) ? DisplayStyle.Flex : DisplayStyle.None;
         }
     }
 

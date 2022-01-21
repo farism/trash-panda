@@ -18,6 +18,11 @@ public class Location : MonoBehaviour
     Game game;
     int tickRate = 5;
 
+    public void ReducePollution(int amount)
+    {
+        pollution = Mathf.Max(0, pollution - amount);
+    }
+
     void Awake()
     {
         game = FindObjectOfType<Game>();

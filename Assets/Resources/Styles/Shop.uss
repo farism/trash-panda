@@ -150,7 +150,7 @@
   transition-duration: 0.4s;
   transition-property: scale;
   transition-timing-function: ease-out-elastic;
-  width: 144px;
+  min-width: 144px;
 }
 
 .shop-item-purchase-icon {
@@ -184,4 +184,19 @@
 .shop-item:hover .shop-item-icon {
   scale: 1.25;
   rotate: -10deg;
+}
+
+.shop-item-purchased-overlay {
+  background-color: white;
+  display: none;
+  opacity: 0.85;
+  border-radius: 42px;
+}
+
+.purchased .shop-item-purchase {
+  background-color: grey;
+}
+
+.purchased .shop-item-purchased-overlay {
+  display: flex;
 }

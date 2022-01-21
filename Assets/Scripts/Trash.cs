@@ -1,23 +1,17 @@
-using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
 public class Trash : MonoBehaviour
 {
     new public Collider collider;
+    new public Renderer renderer;
     public Rigidbody rb;
-    Outline outline;
-
-    public void SetHighlight(bool highlighted)
-    {
-        outline.OutlineColor = highlighted ? Color.green : Color.clear;
-    }
+    public bool held { get => gameObject.layer == LayerMask.NameToLayer("TrashHeld"); }
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
-        outline = GetComponent<Outline>();
+        renderer = GetComponent<Renderer>();
     }
 
     void Update()

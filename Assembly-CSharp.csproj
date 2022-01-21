@@ -44,6 +44,7 @@
      <Compile Include="Assets\Scripts\ScriptableObjects\ToolScriptableObject.cs" />
      <Compile Include="Assets\Scripts\SpriteOutliner.cs" />
      <Compile Include="Assets\Scripts\DisposalArea.cs" />
+     <Compile Include="Assets\Scripts\Bed.cs" />
      <Compile Include="Assets\Scripts\Location.cs" />
      <Compile Include="Assets\Scripts\Trash.cs" />
      <Compile Include="Assets\Scripts\Utils.cs" />
@@ -67,7 +68,6 @@
      <Compile Include="Assets\Scripts\Types.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\ShopScriptableObject.cs" />
      <Compile Include="Assets\Scripts\ScriptableObjects\UpgradeScriptableObject.cs" />
-     <Compile Include="Assets\Scripts\Bed.cs" />
      <None Include="Assets\Resources\Styles\Currency.uss" />
      <None Include="Assets\Resources\Styles\Modal.uss" />
      <None Include="Assets\Resources\Styles\Shop.uss" />
