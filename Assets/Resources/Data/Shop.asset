@@ -15,15 +15,15 @@ MonoBehaviour:
   food:
   - {fileID: 11400000, guid: 7b75b37934d877b4f9f29d1b7561abe6, type: 2}
   - {fileID: 11400000, guid: 57c770c1ecf9c944ca075d5231ebf3b0, type: 2}
-  - {fileID: 11400000, guid: 055bb47bebfc9f347b0e2bdcfbd0ca3b, type: 2}
-  - {fileID: 11400000, guid: a5871e331c826914d83368f14f015d17, type: 2}
   - {fileID: 11400000, guid: 1c10550f1f451a64d93c930694687aa6, type: 2}
-  - {fileID: 11400000, guid: eeb2bd99f389345428987f749e66d798, type: 2}
-  - {fileID: 11400000, guid: 157494374ea766c4dbd928b103ada37b, type: 2}
   - {fileID: 11400000, guid: e326953658b283a49ac4f806d7198144, type: 2}
-  - {fileID: 11400000, guid: 0641f55bc023df940a99b6024d67692f, type: 2}
+  - {fileID: 11400000, guid: 055bb47bebfc9f347b0e2bdcfbd0ca3b, type: 2}
+  - {fileID: 11400000, guid: 157494374ea766c4dbd928b103ada37b, type: 2}
+  - {fileID: 11400000, guid: eeb2bd99f389345428987f749e66d798, type: 2}
   - {fileID: 11400000, guid: 40e836d609600964d9f89174033fbcf4, type: 2}
+  - {fileID: 11400000, guid: a5871e331c826914d83368f14f015d17, type: 2}
   - {fileID: 11400000, guid: 6057b377c3b995a468650c7fbd45638d, type: 2}
+  - {fileID: 11400000, guid: 0641f55bc023df940a99b6024d67692f, type: 2}
   - {fileID: 11400000, guid: 830ec967f0c3bcc40957a5fb3c845623, type: 2}
   furniture:
   - {fileID: 11400000, guid: c569770dbfec4a54297c30a0fd4dbc09, type: 2}

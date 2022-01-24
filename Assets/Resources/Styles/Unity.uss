@@ -33,6 +33,8 @@
 
 .unity-scroller {
   display: none;
+  position: absolute;
+  top: 100000px;
 }
 
 .unity-scroller {

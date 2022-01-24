@@ -4,237 +4,234 @@ using UnityEngine.UIElements;
 
 public class UIHome : MonoBehaviour, IScreen
 {
-    public Game game;
-    public ShopScriptableObject shopSO;
-    public bool isMouseOverUI = false;
+  public Game game;
+  public ShopScriptableObject shopSO;
 
-    VisualElement root;
-    VisualElement home;
-    VisualElement activeItem;
-    Button foodBtn;
-    Button toysBtn;
-    VisualElement food;
-    VisualElement toys;
-    List<VisualElement> foodBtns = new List<VisualElement>();
-    List<VisualElement> toyBtns = new List<VisualElement>();
-    FoodScriptableObject activeFood;
-    ToyScriptableObject activeToy;
-    bool prevActive = false;
+  VisualElement root;
+  VisualElement home;
+  VisualElement activeItem;
+  Button foodBtn;
+  Button toysBtn;
+  VisualElement food;
+  VisualElement toys;
+  List<VisualElement> foodBtns = new List<VisualElement>();
+  List<VisualElement> toyBtns = new List<VisualElement>();
+  FoodScriptableObject activeFood;
+  ToyScriptableObject activeToy;
+  bool prevActive = false;
 
-    public void Show()
+  public void Show()
+  {
+    UI.Show(home);
+  }
+
+  public void Hide()
+  {
+    UI.Hide(home);
+  }
+
+  void Start()
+  {
+    root = GetComponent<UIDocument>().rootVisualElement;
+
+    activeItem = root.Q<VisualElement>("ActiveItem");
+
+    home = root.Q<VisualElement>("Home");
+
+    food = home.Q<VisualElement>("Food");
+    var foodItems = food.Q<ScrollView>("Items");
+    foreach (var so in shopSO.food)
     {
-        UI.Show(home);
+      var btn = new VisualElement();
+      btn.AddToClassList("food-button");
+      btn.Add(CreateButtonIcon(so.texture));
+      btn.Add(CreateButtonLabel());
+      btn.RegisterCallback<MouseDownEvent>((ctx) =>
+      {
+        SetActiveFood(so);
+      });
+      foodItems.Add(btn);
+      foodBtns.Add(btn);
     }
 
-    public void Hide()
+    toys = home.Q<VisualElement>("Toys");
+    var toyItems = toys.Q<ScrollView>("Items");
+    foreach (var so in shopSO.toys)
     {
-        UI.Hide(home);
+      var btn = new VisualElement();
+      btn.AddToClassList("toy-button");
+      btn.Add(CreateButtonIcon(so.texture));
+      btn.RegisterCallback<MouseDownEvent>((ctx) =>
+      {
+        SetActiveToy(so);
+        UI.Hide(toys);
+      });
+      toyItems.Add(btn);
+      toyBtns.Add(btn);
     }
 
-    void Start()
+    foodBtn = home.Q<Button>("FoodBtn");
+    foodBtn.clicked += () =>
     {
-        root = GetComponent<UIDocument>().rootVisualElement;
+      UI.Hide(toys);
+      UI.Toggle(food);
+    };
 
-        activeItem = root.Q<VisualElement>("ActiveItem");
+    toysBtn = home.Q<Button>("ToysBtn");
+    toysBtn.clicked += () =>
+    {
+      UI.Hide(food);
+      UI.Toggle(toys);
+    };
 
-        home = root.Q<VisualElement>("Home");
-
-        food = home.Q<VisualElement>("Food");
-        var foodItems = food.Q<ScrollView>("Items");
-        foreach (var so in shopSO.food)
+    foreach (var btn in home.Query<Button>().ToList())
+    {
+      btn.RegisterCallback<MouseEnterEvent>((ctx) =>
+      {
+        foreach (var outliner in FindObjectsOfType<SpriteOutliner>())
         {
-            var btn = new VisualElement();
-            btn.AddToClassList("food-button");
-            btn.Add(CreateButtonIcon(so.texture));
-            btn.Add(CreateButtonLabel());
-            btn.RegisterCallback<MouseDownEvent>((ctx) =>
-            {
-                SetActiveFood(so);
-            });
-            foodItems.Add(btn);
-            foodBtns.Add(btn);
+          outliner.Hide();
         }
+      });
+    }
 
-        toys = home.Q<VisualElement>("Toys");
-        var toyItems = toys.Q<ScrollView>("Items");
-        foreach (var so in shopSO.toys)
-        {
-            var btn = new VisualElement();
-            btn.AddToClassList("toy-button");
-            btn.Add(CreateButtonIcon(so.texture));
-            btn.RegisterCallback<MouseDownEvent>((ctx) =>
-            {
-                SetActiveToy(so);
-                UI.Hide(toys);
-            });
-            toyItems.Add(btn);
-            toyBtns.Add(btn);
-        }
+    UI.Hide(food);
+    UI.Hide(toys);
+    Hide();
+  }
 
-        foodBtn = home.Q<Button>("FoodBtn");
-        foodBtn.clicked += () =>
-        {
-            UI.Hide(toys);
-            UI.Toggle(food);
-        };
+  void Update()
+  {
+    if (game.view == View.Home)
+    {
+      UpdateQuantities();
 
-        toysBtn = home.Q<Button>("ToysBtn");
-        toysBtn.clicked += () =>
-        {
-            UI.Hide(food);
-            UI.Toggle(toys);
-        };
+      UpdateToys();
 
-        foreach (var btn in home.Query<Button>().ToList())
-        {
-            btn.RegisterCallback<MouseEnterEvent>((ctx) =>
-            {
-                isMouseOverUI = true;
-                foreach (var outliner in FindObjectsOfType<SpriteOutliner>())
-                {
-                    outliner.Hide();
-                }
-            });
-            btn.RegisterCallback<MouseLeaveEvent>((ctx) => isMouseOverUI = false);
-        }
+      UpdateMoving();
 
+      UpdateActiveItem();
+
+      if (Input.GetMouseButtonDown(1))
+      {
         UI.Hide(food);
         UI.Hide(toys);
-        Hide();
+      }
     }
+  }
 
-    void Update()
+  void UpdateMoving()
+  {
+    var currentActive = game.home.raccoonSide.activeSelf;
+
+    if (prevActive != currentActive)
     {
-        if (game.view == View.Home)
+      if (currentActive)
+      {
+        home.AddToClassList("moving");
+      }
+      else
+      {
+        home.RemoveFromClassList("moving");
+      }
+
+      prevActive = currentActive;
+    }
+  }
+
+  void UpdateQuantities()
+  {
+    for (var i = 0; i < foodBtns.Count; i++)
+    {
+      var btn = foodBtns[i];
+      var food = shopSO.food[i];
+      var qty = game.inventory.QtyFood(food);
+
+      if (qty > 0)
+      {
+        btn.style.display = DisplayStyle.Flex;
+        btn.Q<Label>().text = qty.ToString();
+      }
+      else
+      {
+        btn.style.display = DisplayStyle.None;
+      }
+    }
+  }
+
+  void UpdateToys()
+  {
+    for (var i = 0; i < toyBtns.Count; i++)
+    {
+      var btn = toyBtns[i];
+      var toy = shopSO.toys[i];
+      btn.style.display = game.inventory.IsPurchased(toy) ? DisplayStyle.Flex : DisplayStyle.None;
+    }
+  }
+
+  void UpdateActiveItem()
+  {
+    if (activeFood != null || activeToy != null)
+    {
+      SetActiveItemPosition();
+
+      if (Input.GetMouseButtonUp(0))
+      {
+        if (activeFood)
         {
-            UpdateQuantities();
-
-            UpdateToys();
-
-            UpdateMoving();
-
-            UpdateActiveItem();
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                UI.Hide(food);
-                UI.Hide(toys);
-            }
+          game.home.Feed(activeFood);
         }
-    }
-
-    void UpdateMoving()
-    {
-        var currentActive = game.home.raccoonSide.activeSelf;
-
-        if (prevActive != currentActive)
+        else if (activeToy)
         {
-            if (currentActive)
-            {
-                home.AddToClassList("moving");
-            }
-            else
-            {
-                home.RemoveFromClassList("moving");
-            }
-
-            prevActive = currentActive;
+          game.home.Play(activeToy);
         }
+
+        activeItem.style.display = DisplayStyle.None;
+        activeFood = null;
+        activeToy = null;
+      }
     }
+  }
 
-    void UpdateQuantities()
-    {
-        for (var i = 0; i < foodBtns.Count; i++)
-        {
-            var btn = foodBtns[i];
-            var food = shopSO.food[i];
-            var qty = game.inventory.QtyFood(food);
+  VisualElement CreateButtonIcon(Texture2D texture)
+  {
+    var icon = new VisualElement();
+    icon.AddToClassList("frame");
+    icon.AddToClassList("button-icon");
+    icon.pickingMode = PickingMode.Ignore;
+    icon.style.backgroundImage = texture;
 
-            if (qty > 0)
-            {
-                btn.style.display = DisplayStyle.Flex;
-                btn.Q<Label>().text = qty.ToString();
-            }
-            else
-            {
-                btn.style.display = DisplayStyle.None;
-            }
-        }
-    }
+    return icon;
+  }
 
-    void UpdateToys()
-    {
-        for (var i = 0; i < toyBtns.Count; i++)
-        {
-            var btn = toyBtns[i];
-            var toy = shopSO.toys[i];
-            btn.style.display = game.inventory.IsPurchased(toy) ? DisplayStyle.Flex : DisplayStyle.None;
-        }
-    }
+  Label CreateButtonLabel()
+  {
+    var label = new Label();
+    label.AddToClassList("button-label");
+    label.pickingMode = PickingMode.Ignore;
 
-    void UpdateActiveItem()
-    {
-        if (activeFood != null || activeToy != null)
-        {
-            SetActiveItemPosition();
+    return label;
+  }
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                if (activeFood)
-                {
-                    game.home.Feed(activeFood);
-                }
-                else if (activeToy)
-                {
-                    game.home.Play(activeToy);
-                }
+  void SetActiveItemPosition()
+  {
+    activeItem.style.left = Input.mousePosition.x;
+    activeItem.style.top = Screen.height - Input.mousePosition.y;
+  }
 
-                activeItem.style.display = DisplayStyle.None;
-                activeFood = null;
-                activeToy = null;
-            }
-        }
-    }
+  void SetActiveFood(FoodScriptableObject so)
+  {
+    activeFood = so;
+    SetActiveItemPosition();
+    activeItem.style.backgroundImage = so.texture;
+    activeItem.style.display = DisplayStyle.Flex;
+  }
 
-    VisualElement CreateButtonIcon(Texture2D texture)
-    {
-        var icon = new VisualElement();
-        icon.AddToClassList("frame");
-        icon.AddToClassList("button-icon");
-        icon.pickingMode = PickingMode.Ignore;
-        icon.style.backgroundImage = texture;
-
-        return icon;
-    }
-
-    Label CreateButtonLabel()
-    {
-        var label = new Label();
-        label.AddToClassList("button-label");
-        label.pickingMode = PickingMode.Ignore;
-
-        return label;
-    }
-
-    void SetActiveItemPosition()
-    {
-        activeItem.style.left = Input.mousePosition.x;
-        activeItem.style.top = Screen.height - Input.mousePosition.y;
-    }
-
-    void SetActiveFood(FoodScriptableObject so)
-    {
-        activeFood = so;
-        SetActiveItemPosition();
-        activeItem.style.backgroundImage = so.texture;
-        activeItem.style.display = DisplayStyle.Flex;
-    }
-
-    void SetActiveToy(ToyScriptableObject so)
-    {
-        activeToy = so;
-        SetActiveItemPosition();
-        activeItem.style.backgroundImage = so.texture;
-        activeItem.style.display = DisplayStyle.Flex;
-    }
+  void SetActiveToy(ToyScriptableObject so)
+  {
+    activeToy = so;
+    SetActiveItemPosition();
+    activeItem.style.backgroundImage = so.texture;
+    activeItem.style.display = DisplayStyle.Flex;
+  }
 }

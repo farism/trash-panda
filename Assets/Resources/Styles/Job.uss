@@ -20,6 +20,8 @@
   margin: 0 4px;
   border-radius: 8px;
   overflow: none;
+  transition-duration: 0.5s;
+  transition-property: opacity;
   width: 64px;
 }
 
@@ -61,6 +63,10 @@
   position: absolute;
   top: 48px;
   width: 48px;
+}
+
+#Skills Button.inactive {
+  opacity: 0.25;
 }
 
 .skill-cooldown {

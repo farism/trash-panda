@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   texture: {fileID: 2800000, guid: 91edd807a92dc1a4e927e37ad9ca80fb, type: 3}
-  price: 5000
+  price: 500
   energy: -10
   hunger: -10
   love: 5

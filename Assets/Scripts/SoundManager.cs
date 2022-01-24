@@ -3,95 +3,95 @@ using DG.Tweening;
 
 public enum Music
 {
-    Home,
-    Shop,
-    Job,
-    Job2
+  Home,
+  Shop,
+  Job,
+  Job2
 }
 
 public enum Effect
 {
-    ButtonHover,
-    ButtonClick,
+  ButtonHover,
+  ButtonClick,
 }
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioClip buttonHover;
-    public AudioClip buttonClick;
-    public AudioClip home;
-    public AudioClip shop;
-    public AudioClip job;
-    public AudioClip job2;
+  public AudioClip buttonHover;
+  public AudioClip buttonClick;
+  public AudioClip home;
+  public AudioClip shop;
+  public AudioClip job;
+  public AudioClip job2;
 
-    AudioSource musicSource;
-    AudioSource effectsSource;
+  AudioSource musicSource;
+  AudioSource effectsSource;
 
-    void Awake()
+  void Awake()
+  {
+    var audios = GetComponents<AudioSource>();
+    musicSource = audios[0];
+    effectsSource = audios[1];
+  }
+
+  public void PlayMusic(Music music)
+  {
+    AudioClip clip = null;
+
+    if (music == Music.Home)
     {
-        var audios = GetComponents<AudioSource>();
-        musicSource = audios[0];
-        effectsSource = audios[1];
+      clip = home;
+    }
+    else if (music == Music.Shop)
+    {
+      clip = shop;
+    }
+    else if (music == Music.Job)
+    {
+      clip = job;
     }
 
-    public void PlayMusic(Music music)
+    if (clip != musicSource.clip)
     {
-        AudioClip clip = null;
+      DOTween
+      .To(() => musicSource.volume, (val) => musicSource.volume = val, 0, 1)
+      .OnComplete(() =>
+      {
+        musicSource.clip = clip;
+        musicSource.Play();
+        DOTween.To(() => musicSource.volume, (val) => musicSource.volume = val, 0.5f, 1);
+      });
 
-        if (music == Music.Home)
-        {
-            clip = home;
-        }
-        else if (music == Music.Shop)
-        {
-            clip = shop;
-        }
-        else if (music == Music.Job)
-        {
-            clip = job;
-        }
-
-        if (clip != musicSource.clip)
-        {
-            DOTween
-            .To(() => musicSource.volume, (val) => musicSource.volume = val, 0, 1)
-            .OnComplete(() =>
-            {
-                musicSource.clip = clip;
-                musicSource.Play();
-                DOTween.To(() => musicSource.volume, (val) => musicSource.volume = val, 0.5f, 1);
-            });
-
-        }
     }
+  }
 
-    public void PlayEffect(Effect effect)
+  public void PlayEffect(Effect effect)
+  {
+    if (effect == Effect.ButtonHover)
     {
-        if (effect == Effect.ButtonHover)
-        {
-            effectsSource.PlayOneShot(buttonHover, 2);
-        }
-        else if (effect == Effect.ButtonClick)
-        {
-            effectsSource.PlayOneShot(buttonClick, 2);
-        }
+      effectsSource.PlayOneShot(buttonHover, 2);
     }
-
-    public void SetMusicEnabled(bool enabled)
+    else if (effect == Effect.ButtonClick)
     {
-        musicSource.enabled = enabled;
+      effectsSource.PlayOneShot(buttonClick, 2);
     }
+  }
 
-    public void SetEffectsEnabled(bool enabled)
-    {
-        effectsSource.enabled = enabled;
-    }
+  public void SetMusicEnabled(bool enabled)
+  {
+    musicSource.enabled = enabled;
+  }
 
-    void Start()
-    {
-    }
+  public void SetEffectsEnabled(bool enabled)
+  {
+    effectsSource.enabled = enabled;
+  }
 
-    void Update()
-    {
-    }
+  void Start()
+  {
+  }
+
+  void Update()
+  {
+  }
 }

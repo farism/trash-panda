@@ -72,6 +72,7 @@
                     <ui:Button text="Start" display-tooltip-when-elided="false" name="LocationInfoStart" focusable="false" class="yellow-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="RefreshTimer" />
         </ui:VisualElement>
         <ui:VisualElement name="Job" class="frame" style="display: flex;">
             <ui:VisualElement name="Skills">

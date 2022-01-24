@@ -2,40 +2,40 @@ using UnityEngine;
 
 public class Bed : MonoBehaviour
 {
-    public FurnitureScriptableObject furniture;
+  public FurnitureScriptableObject furniture;
 
-    Game game;
-    UIHome uihome;
-    SpriteRenderer spriteRenderer;
-    SpriteOutliner spriteOutliner;
+  Game game;
+  SpriteRenderer spriteRenderer;
+  SpriteOutliner spriteOutliner;
 
-    void Start()
+  void Start()
+  {
+    game = FindObjectOfType<Game>();
+    spriteRenderer = GetComponent<SpriteRenderer>();
+    spriteOutliner = GetComponent<SpriteOutliner>();
+    gameObject.SetActive(false);
+  }
+
+  void OnMouseDown()
+  {
+    if (!game.ui.isMouseOverUI && game.sleepCooldown == 0)
     {
-        game = FindObjectOfType<Game>();
-        uihome = FindObjectOfType<UIHome>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteOutliner = GetComponent<SpriteOutliner>();
-        gameObject.SetActive(false);
+      game.home.Sleep(furniture);
+      spriteOutliner.color = Color.gray;
     }
+  }
 
-    void OnMouseDown()
-    {
-        if (!uihome.isMouseOverUI)
-        {
-            if (game.sleepCooldown == 0)
-            {
-                game.home.Sleep(furniture);
-                spriteOutliner.color = Color.gray;
-            }
-        }
-    }
+  void Update()
+  {
+    UpdateSpriteColor();
+  }
 
-    void Update()
+  void UpdateSpriteColor()
+  {
+    if (game.view == View.Home)
     {
-        if (game.view == View.Home)
-        {
-            spriteOutliner.color = game.sleepCooldown == 0 ? Color.yellow : Color.gray;
-            spriteRenderer.color = Color.Lerp(Color.white, Color.gray, game.sleepCooldown / 30);
-        }
+      spriteOutliner.color = game.sleepCooldown == 0 ? Color.yellow : Color.gray;
+      spriteRenderer.color = Color.Lerp(Color.white, Color.gray, game.sleepCooldown / 30);
     }
+  }
 }
